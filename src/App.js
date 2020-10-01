@@ -4,6 +4,8 @@ import './App.css';
 import JSONDisplay from './JSONDisplay'
 import sampleData from './sampleData.json'
 import DetailDisplay from './DetailDisplay'
+import TreeBeardComponent from './TreeBeardComponent'
+import SortableTreeComponent from './SortableTreeComponent'
 
 function App() {
   console.log(sampleData);
@@ -26,6 +28,8 @@ function App() {
       {/* </header> */}
         <JSONDisplay json={sampleData} select={setSelected}/>
         {selected && <DetailDisplay selected={selected}/>}
+        <TreeBeardComponent className="TreeBeard" json={sampleData}/>
+        <SortableTreeComponent json={sampleData}/>
     </div>
   );
 }

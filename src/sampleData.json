@@ -35,5 +35,42 @@
         "phoneNumber": "111111111",
         "emailAddress": "jone.mac@learningcontainer.com"
       }
+    ],
+    "employees": [
+      {
+        "employeeId": 1,
+        "firstName": "Krish",
+        "lastName": "Dave",
+        "phoneNumber": "123456",
+        "emailAddress": "krish.lee@learningcontainer.com"
+      },
+      {
+        "employeeId": 2,
+        "firstName": "racks",
+        "lastName": "Rice",
+        "phoneNumber": "123456",
+        "emailAddress": "racks.jacson@learningcontainer.com"
+      },
+      {
+        "employeeId": 3,
+        "firstName": "denial",
+        "lastName": "Beef",
+        "phoneNumber": "33333333",
+        "emailAddress": "denial.roast@learningcontainer.com"
+      },
+      {
+        "employeeId": 4,
+        "firstName": "devid",
+        "lastName": "Oldo",
+        "phoneNumber": "222222222",
+        "emailAddress": "devid.neo@learningcontainer.com"
+      },
+      {
+        "employeeId": 5,
+        "firstName": "Mac",
+        "lastName": "Salad",
+        "phoneNumber": "111111111",
+        "emailAddress": "jone.mac@learningcontainer.com"
+      }
     ]
   }
