@@ -1,7 +1,10 @@
 import React, { useState, useCallback } from "react";
 
 function DetailDisplay(props) {
-  const selected = props.selected;
+  const {json} = props;
+
+
+ const selected = json.users[1];
   // const select = props.select;
   // const [expanded, setExpanded] = useState(false);
   // const listItems = json.users.map((item, index) => (

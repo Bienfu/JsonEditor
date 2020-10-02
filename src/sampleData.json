@@ -1,76 +1,282 @@
 {
-    "users": [
-      {
-        "userId": 1,
-        "firstName": "Krish",
-        "lastName": "Lee",
-        "phoneNumber": "123456",
-        "emailAddress": "krish.lee@learningcontainer.com"
+  "companies": [
+    {
+      "name": "Company A",
+      "address": {
+        "street": "123 Main Street",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": "94009"
       },
-      {
-        "userId": 2,
-        "firstName": "racks",
-        "lastName": "jacson",
-        "phoneNumber": "123456",
-        "emailAddress": "racks.jacson@learningcontainer.com"
+      "departments": [
+        {
+          "name": "Development",
+          "budget": "$300",
+          "executive": {
+            "userId": 3,
+            "firstName": "denial",
+            "lastName": "roast",
+            "phoneNumber": "33333333",
+            "emailAddress": "denial.roast@learningcontainer.com"
+          },
+          "users": [
+            {
+              "userId": 1,
+              "firstName": "Krish",
+              "lastName": "Lee",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "userId": 2,
+              "firstName": "racks",
+              "lastName": "jacson",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            }
+          ],
+          "employees": [
+            {
+              "employeeId": 4,
+              "firstName": "devid",
+              "lastName": "Oldo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "employeeId": 5,
+              "firstName": "Mac",
+              "lastName": "Salad",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ]
+        },
+        {
+          "name": "Marketing",
+          "budget": "$500",
+          "executive": {
+            "userId": 3,
+            "firstName": "denial",
+            "lastName": "roast",
+            "phoneNumber": "33333333",
+            "emailAddress": "denial.roast@learningcontainer.com"
+          },
+          "users": [
+            {
+              "userId": 4,
+              "firstName": "devid",
+              "lastName": "neo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "userId": 5,
+              "firstName": "jone",
+              "lastName": "mac",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ],
+          "employees": [
+            {
+              "employeeId": 1,
+              "firstName": "Krish",
+              "lastName": "Dave",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "employeeId": 2,
+              "firstName": "racks",
+              "lastName": "Rice",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Company B",
+      "address": {
+        "street": "123 Main Street",
+        "city": "San Jose",
+        "state": "CA",
+        "zipcode": "94009"
       },
-      {
-        "userId": 3,
-        "firstName": "denial",
-        "lastName": "roast",
-        "phoneNumber": "33333333",
-        "emailAddress": "denial.roast@learningcontainer.com"
-      },
-      {
-        "userId": 4,
-        "firstName": "devid",
-        "lastName": "neo",
-        "phoneNumber": "222222222",
-        "emailAddress": "devid.neo@learningcontainer.com"
-      },
-      {
-        "userId": 5,
-        "firstName": "jone",
-        "lastName": "mac",
-        "phoneNumber": "111111111",
-        "emailAddress": "jone.mac@learningcontainer.com"
-      }
-    ],
-    "employees": [
-      {
-        "employeeId": 1,
-        "firstName": "Krish",
-        "lastName": "Dave",
-        "phoneNumber": "123456",
-        "emailAddress": "krish.lee@learningcontainer.com"
-      },
-      {
-        "employeeId": 2,
-        "firstName": "racks",
-        "lastName": "Rice",
-        "phoneNumber": "123456",
-        "emailAddress": "racks.jacson@learningcontainer.com"
-      },
-      {
-        "employeeId": 3,
-        "firstName": "denial",
-        "lastName": "Beef",
-        "phoneNumber": "33333333",
-        "emailAddress": "denial.roast@learningcontainer.com"
-      },
-      {
-        "employeeId": 4,
-        "firstName": "devid",
-        "lastName": "Oldo",
-        "phoneNumber": "222222222",
-        "emailAddress": "devid.neo@learningcontainer.com"
-      },
-      {
-        "employeeId": 5,
-        "firstName": "Mac",
-        "lastName": "Salad",
-        "phoneNumber": "111111111",
-        "emailAddress": "jone.mac@learningcontainer.com"
-      }
-    ]
-  }
+      "departments": [
+        {
+          "name": "Development",
+          "budget": "$300",
+          "executive": {
+            "userId": 3,
+            "firstName": "denial",
+            "lastName": "roast",
+            "phoneNumber": "33333333",
+            "emailAddress": "denial.roast@learningcontainer.com"
+          },
+          "users": [
+            {
+              "userId": 1,
+              "firstName": "Krish",
+              "lastName": "Lee",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "userId": 2,
+              "firstName": "racks",
+              "lastName": "jacson",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            },
+            {
+              "userId": 3,
+              "firstName": "denial",
+              "lastName": "roast",
+              "phoneNumber": "33333333",
+              "emailAddress": "denial.roast@learningcontainer.com"
+            },
+            {
+              "userId": 4,
+              "firstName": "devid",
+              "lastName": "neo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "userId": 5,
+              "firstName": "jone",
+              "lastName": "mac",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ],
+          "employees": [
+            {
+              "employeeId": 1,
+              "firstName": "Krish",
+              "lastName": "Dave",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "employeeId": 2,
+              "firstName": "racks",
+              "lastName": "Rice",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            },
+            {
+              "employeeId": 3,
+              "firstName": "denial",
+              "lastName": "Beef",
+              "phoneNumber": "33333333",
+              "emailAddress": "denial.roast@learningcontainer.com"
+            },
+            {
+              "employeeId": 4,
+              "firstName": "devid",
+              "lastName": "Oldo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "employeeId": 5,
+              "firstName": "Mac",
+              "lastName": "Salad",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ]
+        },
+        {
+          "name": "Marketing",
+          "budget": "$500",
+          "executive": {
+            "userId": 3,
+            "firstName": "denial",
+            "lastName": "roast",
+            "phoneNumber": "33333333",
+            "emailAddress": "denial.roast@learningcontainer.com"
+          },
+          "users": [
+            {
+              "userId": 1,
+              "firstName": "Krish",
+              "lastName": "Lee",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "userId": 2,
+              "firstName": "racks",
+              "lastName": "jacson",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            },
+            {
+              "userId": 3,
+              "firstName": "denial",
+              "lastName": "roast",
+              "phoneNumber": "33333333",
+              "emailAddress": "denial.roast@learningcontainer.com"
+            },
+            {
+              "userId": 4,
+              "firstName": "devid",
+              "lastName": "neo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "userId": 5,
+              "firstName": "jone",
+              "lastName": "mac",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ],
+          "employees": [
+            {
+              "employeeId": 1,
+              "firstName": "Krish",
+              "lastName": "Dave",
+              "phoneNumber": "123456",
+              "emailAddress": "krish.lee@learningcontainer.com"
+            },
+            {
+              "employeeId": 2,
+              "firstName": "racks",
+              "lastName": "Rice",
+              "phoneNumber": "123456",
+              "emailAddress": "racks.jacson@learningcontainer.com"
+            },
+            {
+              "employeeId": 3,
+              "firstName": "denial",
+              "lastName": "Beef",
+              "phoneNumber": "33333333",
+              "emailAddress": "denial.roast@learningcontainer.com"
+            },
+            {
+              "employeeId": 4,
+              "firstName": "devid",
+              "lastName": "Oldo",
+              "phoneNumber": "222222222",
+              "emailAddress": "devid.neo@learningcontainer.com"
+            },
+            {
+              "employeeId": 5,
+              "firstName": "Mac",
+              "lastName": "Salad",
+              "phoneNumber": "111111111",
+              "emailAddress": "jone.mac@learningcontainer.com"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
