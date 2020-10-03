@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Treebeard } from "react-treebeard";
 
 const TreeExample = (props) => {
-  const { json, json2 } = props;
+  const { json, json2, selected } = props;
   const _ = require("lodash");
   //   const children = json.users.map((user) => {
   //     return {
@@ -10,7 +10,7 @@ const TreeExample = (props) => {
   //     };
   //   });
   //   console.log(Object.keys(json));
-  console.log("hi");
+  // console.log("hi");
 
   // let test = useMemo(() => mapChildren(Object.keys(json),json), [json]);
 
@@ -75,7 +75,7 @@ const TreeExample = (props) => {
   //   return newJSON;
   // }
 
-  console.log(Object.entries(json.companies[0].departments[0].executive.emailAddress))
+  // console.log(Object.entries(json.companies[0].departments[0].executive.emailAddress))
   function mapChildren3(json, path) {
     // console.log("length", Object.entries(json))
     let array = Object.entries(json).map(([key, value]) => {
@@ -132,8 +132,7 @@ const TreeExample = (props) => {
 
   let test3 = useMemo(() => mapChildren3(json, ""), [json]);
 
-  // console.log("test ", test);
-  console.log("test3 ", test3);
+  // console.log("test3 ", test3);
 
   // const stuff = {
   //     name: "root",
@@ -142,7 +141,7 @@ const TreeExample = (props) => {
   //   };
   const [data, setData] = useState(test3);
   const [cursor, setCursor] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [choose, setSelected] = useState(null);
 
   const onToggle = (node, toggled) => {
     if (cursor) {
@@ -153,16 +152,17 @@ const TreeExample = (props) => {
       node.toggled = toggled;
     }
     setCursor(node);
-    console.log("path", node.id);
+    // console.log("path", node.id);
+    selected(node.id.substring(1));
     let chosen = _.get(json, node.id.substring(1), "default");
-    console.log(chosen);
+    // console.log(chosen);
     if (chosen && chosen.name) {
       setSelected(chosen.name);
     }
     else if(chosen && chosen.firstName && chosen.lastName){
       setSelected(`${chosen.firstName} ${chosen.lastName}`)
     }
-    console.log(selected);
+    // console.log(choose);
     if (Array.isArray(data)) {
       setData([...data]);
     } else {
@@ -174,7 +174,6 @@ const TreeExample = (props) => {
     <div>
       <Treebeard data={data} onToggle={onToggle} />
       {<div>{selected}</div>}
-      <div>hi</div>
     </div>
   );
 };
