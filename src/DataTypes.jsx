@@ -4,7 +4,8 @@ export const DataTypes = [
     typeName: "Person",
     typeCheckFields: ["firstName", "lastName"],
     icon: "fa fa fa",
-    display: ["firstName", "lastName"],
+    display:(key, firstName, lastName) => (`${key}: ${firstName} ${lastName} `),
+    display2:(firstName, lastName) => (`${firstName} ${lastName} `),
     details: (chosen) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
@@ -22,7 +23,7 @@ export const DataTypes = [
     typeName: "Address",
     typeCheckFields: ["city", "street", "zipcode"],
     icon: "fa fa fa",
-    display: ["city", "street", "zipcode"],
+    display:(street, city, state, zipcode) => (`${street}, ${city}, ${state} ${zipcode}`),
     details: (chosen) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
@@ -49,7 +50,7 @@ export const DataTypes = [
     typeName: "Name",
     typeCheckFields: ["name"],
     icon: "fa fa fa",
-    display: ["name"],
+    display:(name) => (`${name}`),
     details: (chosen) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">

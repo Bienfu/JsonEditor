@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { Treebeard } from "react-treebeard";
+import { DataTypes } from "./DataTypes";
+import _ from "lodash";
 
 const TreeExample = (props) => {
   const { json, json2, selected } = props;
-  const _ = require("lodash");
   //   const children = json.users.map((user) => {
   //     return {
   //       name: `${user.firstName} ${user.lastName}`,
@@ -87,12 +88,36 @@ const TreeExample = (props) => {
       // } else {
       //   name = key;
       // }
-      if(value && value.name){
-        name = value.name;
+      let type;
+      for (type of DataTypes) {
+        if (type.typeCheckFields.every((path) => _.has(value, path))) {
+          // console.log("Found");
+          // console.log(type.typeName);
+          if(type.typeName == "Person"){
+            if(key == "executive"){
+              name = type.display(key, value.firstName, value.lastName);
+            }
+            else{
+              name = type.display2(value.firstName, value.lastName);
+            }
+          }
+          else if(type.typeName == "Address"){
+              name = type.display(value.street, value.city, value.state, value.zipcode);
+          }
+          else if(type.typeName == "Name"){
+            name = type.display(value.name);
+        }
+          // return type.details(chosen);
+        }
+        // console.log("not found");
       }
-      else{
+
+      if(name.length == 0){
         name = key;
       }
+      // else{
+      //   name = key;
+      // }
       if (Array.isArray(value)) {
         // console.log("is Array");
         const newpath = path + `.${name}`;
@@ -106,10 +131,10 @@ const TreeExample = (props) => {
         // console.log("is not Array");
         // console.log(Object.entries(value))
         const newpath = path + `.${key}`;
-        if (value && value.firstName && value.lastName) {
-          // console.log("exist")
-          name = `${key}: ${value.firstName} ${value.lastName}`;
-        }
+        // if (value && value.firstName && value.lastName) {
+        //   // console.log("exist")
+        //   name = `${key}: ${value.firstName} ${value.lastName}`;
+        // }
         if ((typeof value === 'object'))
           return {
             id: path + `[${key}]`,
