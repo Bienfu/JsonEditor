@@ -2,83 +2,15 @@ import React, { useMemo, useState } from "react";
 import { Treebeard } from "react-treebeard";
 import { DataTypes } from "./DataTypes";
 import _ from "lodash";
+import { useEffect } from "react";
 
 const TreeExample = (props) => {
   const { json, json2, selected } = props;
-  //   const children = json.users.map((user) => {
-  //     return {
-  //       name: `${user.firstName} ${user.lastName}`,
-  //     };
-  //   });
-  //   console.log(Object.keys(json));
-  // console.log("hi");
 
-  // let test = useMemo(() => mapChildren(Object.keys(json),json), [json]);
-
-  // function mapChildren(object, json) {
-  //   console.log("object", object);
-  //   return object.map((base) => {
-  //     console.log("base ", base);
-  //     let name = "";
-  //     if (base.firstName && base.lastName) {
-  //       name = `${base.firstName} ${base.lastName}`;
-  //     } else {
-  //       name = base;
-  //     }
-  //     // console.log("base ",json[base])
-  //     //   console.log("infunc ", (Array.isArray(json.base)));
-  //     if (Array.isArray(json[base])) {
-  //       return {
-  //         name: name,
-  //         toggled: true,
-  //         children: mapChildren(json[base], json),
-  //       };
-  //     } else {
-  //       return {
-  //         name: name,
-  //         toggled: true,
-  //       };
-  //     }
-  //   });
-  // }
-
-  // function mapChildren2(json, path) {
-  //   // console.log("entries ", Object.entries(json));
-  //   // console.log("json ", json);
-  //   const newJSON = [];
-  //   for (const [key, value] of Object.entries(json)) {
-  //     // console.log(`Hi ${key}: ${value}`);
-  //     // console.log("value ", value)
-  //     let name = "";
-  //     if (value.firstName && value.lastName) {
-  //       name = `${value.firstName} ${value.lastName}`;
-  //     } else {
-  //       name = key;
-  //     }
-  //     if (Array.isArray(value)) {
-  //       // console.log("is Array")
-  //       const newpath = path + `.${name}`;
-  //       newJSON.push({
-  //         id: path + `.${name}`,
-  //         name: name,
-  //         toggled: true,
-  //         children: mapChildren2(value, newpath),
-  //       });
-  //     } else {
-  //       // console.log("is not Array")
-  //       newJSON.push({
-  //         id: path + `[${key}]`,
-  //         name: name,
-  //         toggled: true,
-  //       });
-  //     }
-  //   }
-  //   return newJSON;
-  // }
 
   // console.log(Object.entries(json.companies[0].departments[0].executive.emailAddress))
   function mapChildren3(json, path) {
-    // console.log("length", Object.entries(json))
+    console.log("length", Object.entries(json))
     let array = Object.entries(json).map(([key, value]) => {
       // console.log(key);
       // console.log(value);
@@ -155,19 +87,20 @@ const TreeExample = (props) => {
     });
   }
 
-  let test3 = useMemo(() => mapChildren3(json, ""), [json]);
-
+  
+  
   // console.log("test3 ", test3);
-
+  
   // const stuff = {
-  //     name: "root",
-  //     toggled: true,
-  //     children: children,
-  //   };
-  const [data, setData] = useState(test3);
-  const [cursor, setCursor] = useState(false);
-  const [choose, setSelected] = useState(null);
-
+    //     name: "root",
+    //     toggled: true,
+    //     children: children,
+    //   };
+    const [data, setData] = useState(null);
+    const [cursor, setCursor] = useState(false);
+    const [choose, setSelected] = useState(null);
+    
+    useMemo(() => {const newData = mapChildren3(json, "");setData(newData)}, [json]);
   const onToggle = (node, toggled) => {
     if (cursor) {
       cursor.active = false;
