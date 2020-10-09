@@ -9,6 +9,7 @@ import TreeBeardComponent from "./TreeBeardComponent";
 import SortableTreeComponent from "./SortableTreeComponent";
 import JsonUpload from "./JsonUpload";
 import {downloadFile} from "./fileDownload";
+import _ from "lodash";
 
 function App() {
   console.log(sampleData);
@@ -32,6 +33,12 @@ function App() {
     const fileName="myJson.json"
     const data = JSON.stringify(json, null, 2);
     downloadFile(data, fileName, "text/json;charset=utf-8");
+  }
+
+  function updateJson(newBranch){
+    let newJson = {...json}
+    _.set(newJson, selected, newBranch);
+    setJson(newJson);
   }
 
   return (
@@ -67,7 +74,7 @@ function App() {
         </div>
         <div className="detailContainer">
           {/* <div>{selected}</div> */}
-          {selected && <DetailDisplay json={json} selected={selected} />}
+          {selected && <DetailDisplay json={json} selected={selected} updateJson={updateJson} />}
         </div>
       </div>
       {/* <SortableTreeComponent json={sampleData}/> */}

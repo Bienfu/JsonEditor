@@ -1,20 +1,60 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import _ from "lodash";
 import { DataTypes } from "./DataTypes";
 
 function DetailDisplay(props) {
-  const { json, selected } = props;
+  const { json, selected, updateJson } = props;
   const chosen = _.get(json, selected, "default");
+  const [path, setPath] = useState(selected);
+  const [copy, setCopy] = useState(chosen);
   let type;
 
   console.log("chosen");
   console.log(chosen);
 
+  useEffect(() => {
+    if(selected != path){
+      setCopy(_.get(json, selected, "default"));
+      setPath(selected);
+    }
+  });
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    // console.log(event.target)
+    console.log(copy)
+    updateJson(copy);
+        // console.log(Object.values(event.target))
+    // Object.values(event.target).map(x=>console.log(x.value))
+    // const { formValues, formValidity } = formState;
+    // if (Object.values(formValidity).every(Boolean)) {
+    //   // Form is valid
+    //   console.log(formValues);
+    // } else {
+    //   for (let key in formValues) {
+    //     let target = {
+    //       name: key,
+    //       value: formValues[key]
+    //     };
+    //     handleValidation(target);
+    //   }
+    // }
+  };
+
+  const onChange = event => {
+    // console.log(event.target);
+    let newCopy = {...copy};
+    console.log(newCopy);
+    console.log(event.target.name);
+    newCopy[event.target.name] = event.target.value;
+    setCopy(newCopy);
+  };
+
   for (type of DataTypes) {
-    if (type.typeCheckFields.every((path) => _.has(chosen, path))) {
+    if (type.typeCheckFields.every((path) => _.has(copy, path))) {
       console.log("Found");
       console.log(type.typeName);
-      return type.details(chosen);
+      return type.details(copy, handleSubmit, onChange);
     }
     console.log("not found");
   }

@@ -6,15 +6,17 @@ export const DataTypes = [
     icon: "fa fa fa",
     display:(key, firstName, lastName) => (`${key}: ${firstName} ${lastName} `),
     display2:(firstName, lastName) => (`${firstName} ${lastName} `),
-    details: (chosen) => (
+    details: (chosen, handleSubmit, onChange) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
+          <form onSubmit={handleSubmit}>
           <label for="fname">First name:</label>
-          <input type="text" id="fname" name="fname" value={chosen.firstName} />
+          <input type="text" id="fname" name="firstName" value={chosen.firstName} onChange={onChange} />
           <label for="lname">Last name:</label>
-          <input type="text" id="lname" name="lname" value={chosen.lastName} />
-          <input className="Button" type="submit" value="Submit" />
+          <input type="text" id="lname" name="lastName" value={chosen.lastName} onChange={onChange} />
+          <button className="Button" type="submit">Submit</button>
+          </form>
         </div>
       </div>
     ),
@@ -24,16 +26,17 @@ export const DataTypes = [
     typeCheckFields: ["city", "street", "zipcode"],
     icon: "fa fa fa",
     display:(street, city, state, zipcode) => (`${street}, ${city}, ${state} ${zipcode}`),
-    details: (chosen) => (
+    details: (chosen, handleSubmit, onChange) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
+          <form onSubmit={handleSubmit}>
           <label for="street">Street:</label>
-          <input type="text" id="street" name="street" value={chosen.street} />
+          <input type="text" id="street" name="street" value={chosen.street} onChange={onChange} />
           <label for="city">City:</label>
-          <input type="text" id="city" name="city" value={chosen.city} />
+          <input type="text" id="city" name="city" value={chosen.city} onChange={onChange} />
           <label for="state">State:</label>
-          <input type="text" id="state" name="state" value={chosen.state} />
+          <input type="text" id="state" name="state" value={chosen.state} onChange={onChange} />
           <label for="zipcode">ZipCode:</label>
           <input
             type="text"
@@ -41,7 +44,8 @@ export const DataTypes = [
             name="zipcode"
             value={chosen.zipcode}
           />
-          <input className="Button" type="submit" value="Submit" />
+          <button className="Button" type="submit">Submit</button>
+          </form>
         </div>
       </div>
     ),
@@ -51,15 +55,17 @@ export const DataTypes = [
     typeCheckFields: ["name"],
     icon: "fa fa fa",
     display:(name) => (`${name}`),
-    details: (chosen) => (
+    details: (chosen, handleSubmit, onChange) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
+          <form onSubmit={handleSubmit}>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name" value={chosen.name} />
+          <input type="text" id="name" name="name" value={chosen.name} onChange={onChange} />
           {/* <label for="lname">Last name:</label>
             <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
-          <input className="Button" type="submit" value="Submit" />
+          <button className="Button" type="submit">Submit</button>
+          </form>
         </div>
       </div>
     ),
