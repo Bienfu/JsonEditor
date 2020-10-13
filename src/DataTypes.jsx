@@ -11,22 +11,26 @@ export const DataTypes = [
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <label for="fname">First name:</label>
-            <input
-              type="text"
-              id="fname"
-              name="firstName"
-              value={chosen.firstName}
-              onChange={onChange}
-            />
-            <label for="lname">Last name:</label>
-            <input
-              type="text"
-              id="lname"
-              name="lastName"
-              value={chosen.lastName}
-              onChange={onChange}
-            />
+            <div className="formFirstName">
+              <label for="fname">First name:</label>
+              <input
+                type="text"
+                id="fname"
+                name="firstName"
+                value={chosen.firstName}
+                onChange={onChange}
+              />
+            </div>
+            <div className="formLastName">
+              <label for="lname">Last name:</label>
+              <input
+                type="text"
+                id="lname"
+                name="lastName"
+                value={chosen.lastName}
+                onChange={onChange}
+              />
+            </div>
             <button className="Button" type="submit">
               Submit
             </button>
@@ -40,6 +44,7 @@ export const DataTypes = [
       phoneNumber: "Phone Number",
       emailAddress: "Email Address",
     },
+    canChange: true,
   },
   {
     typeName: "Address",
@@ -52,37 +57,45 @@ export const DataTypes = [
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <label for="street">Street:</label>
-            <input
-              type="text"
-              id="street"
-              name="street"
-              value={chosen.street}
-              onChange={onChange}
-            />
-            <label for="city">City:</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={chosen.city}
-              onChange={onChange}
-            />
-            <label for="state">State:</label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              value={chosen.state}
-              onChange={onChange}
-            />
-            <label for="zipcode">ZipCode:</label>
-            <input
-              type="text"
-              id="zipcode"
-              name="zipcode"
-              value={chosen.zipcode}
-            />
+            <div className="formStreet">
+              <label for="street">Street:</label>
+              <input
+                type="text"
+                id="street"
+                name="street"
+                value={chosen.street}
+                onChange={onChange}
+              />
+            </div>
+            <div className="formCity">
+              <label for="city">City:</label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value={chosen.city}
+                onChange={onChange}
+              />
+            </div>
+            <div className="formState">
+              <label for="state">State:</label>
+              <input
+                type="text"
+                id="state"
+                name="state"
+                value={chosen.state}
+                onChange={onChange}
+              />
+            </div>
+            <div className="formZipcode">
+              <label for="zipcode">ZipCode:</label>
+              <input
+                type="text"
+                id="zipcode"
+                name="zipcode"
+                value={chosen.zipcode}
+              />
+            </div>
             <button className="Button" type="submit">
               Submit
             </button>
@@ -96,6 +109,7 @@ export const DataTypes = [
       state: "state",
       zipcode: "zipcode",
     },
+    canChange: false,
   },
   {
     typeName: "Name",
@@ -107,14 +121,16 @@ export const DataTypes = [
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <label for="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={chosen.name}
-              onChange={onChange}
-            />
+            <div className="formName">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={chosen.name}
+                onChange={onChange}
+              />
+            </div>
             {/* <label for="lname">Last name:</label>
             <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
             <button className="Button" type="submit">
@@ -129,10 +145,10 @@ export const DataTypes = [
       budget: "$???",
       executive: {
         userId: 1,
-          firstName: "FirstName",
-          lastName: "LastName",
-          phoneNumber: "phone number",
-          emailAddress: "email address"
+        firstName: "FirstName",
+        lastName: "LastName",
+        phoneNumber: "phone number",
+        emailAddress: "email address",
       },
       users: [
         {
@@ -140,7 +156,7 @@ export const DataTypes = [
           firstName: "FirstName",
           lastName: "LastName",
           phoneNumber: "phone number",
-          emailAddress: "email address"
+          emailAddress: "email address",
         },
       ],
       employees: [
@@ -149,9 +165,9 @@ export const DataTypes = [
           firstName: "FirstName",
           lastName: "LastName",
           phoneNumber: "phone number",
-          emailAddress: "email address"
+          emailAddress: "email address",
         },
-      ]
+      ],
     },
     blankCompany: {
       name: "Company Name",
@@ -159,7 +175,7 @@ export const DataTypes = [
         street: "Street name",
         city: "City Name",
         state: "State",
-        zipcode: "zipcode"
+        zipcode: "zipcode",
       },
       departments: [
         {
@@ -167,10 +183,10 @@ export const DataTypes = [
           budget: "$??",
           executive: {
             userId: 1,
-              firstName: "FirstName",
-              lastName: "LastName",
-              phoneNumber: "phone number",
-              emailAddress: "email address"
+            firstName: "FirstName",
+            lastName: "LastName",
+            phoneNumber: "phone number",
+            emailAddress: "email address",
           },
           users: [
             {
@@ -178,7 +194,7 @@ export const DataTypes = [
               firstName: "FirstName",
               lastName: "LastName",
               phoneNumber: "phone number",
-              emailAddress: "email address"
+              emailAddress: "email address",
             },
           ],
           employees: [
@@ -187,11 +203,12 @@ export const DataTypes = [
               firstName: "FirstName",
               lastName: "LastName",
               phoneNumber: "phone number",
-              emailAddress: "email address"
+              emailAddress: "email address",
             },
-          ]
+          ],
         },
-      ]
+      ],
     },
+    canChange: true,
   },
 ];

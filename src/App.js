@@ -100,6 +100,25 @@ function App() {
     }
   }
 
+  function remove() {
+    if (selected) {
+      const jsonCopy = { ...json };
+      const str = selected.substring(0, selected.indexOf("["));
+      // console.log(str);
+      const base = _.get(jsonCopy, str, "default");
+      if (Array.isArray(base)) {
+        const mySubString = selected.substring(
+          selected.lastIndexOf("[") + 1,
+          selected.lastIndexOf("]")
+        );
+        console.log(mySubString);
+        const newBase = _.pullAt(base, mySubString);
+        setJson(jsonCopy);
+        setSelected(null);
+      }
+    }
+  }
+
   function handleKeyPress(evt) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -131,8 +150,9 @@ function App() {
         onChange={(e) => selectedFile(e.target.files[0])}
       />
       <button onClick={download}>Download</button>
-      <button onClick={addNew}>Add</button>
-      <button onClick={duplicateCurrent}>Duplicate</button>
+      {selectedType && selectedType.canChange && <button onClick={addNew}>Add {selectedType.typeName}</button>}
+      {selectedType && selectedType.canChange && <button onClick={duplicateCurrent}>Duplicate</button>}
+      {selectedType && selectedType.canChange && <button onClick={remove}>Remove</button>}
       <div className="content">
         <div
           className="treeContainer"

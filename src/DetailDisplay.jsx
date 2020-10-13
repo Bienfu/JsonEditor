@@ -48,7 +48,7 @@ function DetailDisplay(props) {
   if (copy && typeDefinition) {
     return typeDefinition.details(copy, handleSubmit, onChange);
   }
-
+  setType(null);
   return <div>Loading...</div>;
 }
 
