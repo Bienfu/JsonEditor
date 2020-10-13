@@ -8,13 +8,15 @@ import DetailDisplay from "./DetailDisplay";
 import TreeBeardComponent from "./TreeBeardComponent";
 import SortableTreeComponent from "./SortableTreeComponent";
 import JsonUpload from "./JsonUpload";
-import {downloadFile} from "./fileDownload";
+import { downloadFile } from "./fileDownload";
+import { DataTypes } from "./DataTypes";
 import _ from "lodash";
 
 function App() {
   console.log(sampleData);
   const [selected, setSelected] = useState(null);
   const [json, setJson] = useState(sampleData);
+  const [selectedType, setType] = useState(null);
 
   function selectedFile(newFile) {
     const reader = new FileReader();
@@ -29,16 +31,79 @@ function App() {
     reader.readAsText(newFile);
   }
 
-  function download(){
-    const fileName="myJson.json"
+  function download() {
+    const fileName = "myJson.json";
     const data = JSON.stringify(json, null, 2);
     downloadFile(data, fileName, "text/json;charset=utf-8");
   }
 
-  function updateJson(newBranch){
-    let newJson = {...json}
+  function updateJson(newBranch) {
+    let newJson = { ...json };
     _.set(newJson, selected, newBranch);
     setJson(newJson);
+  }
+
+  function addNew() {
+    if (selected) {
+      const target = selected;
+      const jsonCopy = { ...json };
+      // console.log(target);
+      const str = target.substring(0, target.indexOf("["));
+      // console.log(str);
+      const base = _.get(jsonCopy, str, "default");
+      // console.log(base);
+      if (Array.isArray(base)) {
+        console.log("isArray");
+        // console.log(Object.keys(base));
+        if (str == "companies" && selectedType.typeName == "Name") {
+          base.push(selectedType.blankCompany);
+        } else if (selectedType.typeName == "Name") {
+          base.push(selectedType.blankDepartment);
+        } else if (selectedType.typeName == "Person") {
+          base.push(selectedType.blank);
+        }
+        const newPath = str + `[${base.length - 1}]`;
+        console.log("new path ", newPath);
+        setSelected(newPath);
+        setJson(jsonCopy);
+      } else {
+        console.log("isNotArray");
+      }
+      // const chosen = _.get(jsonCopy, selected, "default");
+      // if (chosen) {
+      //   for (let type of DataTypes) {
+      //     if (type.typeCheckFields.every((path) => _.has(chosen, path))) {
+      //       console.log("Found");
+      //       console.log(type.typeName);
+      // }
+      // console.log("not found");
+      // }
+      // }
+    }
+  }
+
+  function duplicateCurrent() {
+    if (selected) {
+      const jsonCopy = { ...json };
+      const original = _.get(jsonCopy, selected, "default");
+      const copy = _.clone(original);
+      const str = selected.substring(0, selected.indexOf("["));
+      // console.log(str);
+      const base = _.get(jsonCopy, str, "default");
+      base.push(copy);
+      setJson(jsonCopy);
+      const newPath = str + `[${base.length - 1}]`;
+      console.log("new path ", newPath);
+      setSelected(newPath);
+    }
+  }
+
+  function handleKeyPress(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    console.log(evt.ctrlKey);
+    console.log(evt.key);
+    return false;
   }
 
   return (
@@ -64,8 +129,15 @@ function App() {
         onChange={(e) => selectedFile(e.target.files[0])}
       />
       <button onClick={download}>Download</button>
+      <button onClick={addNew}>Add</button>
+      <button onClick={duplicateCurrent}>Duplicate</button>
       <div className="content">
-        <div className="treeContainer">
+        <div
+          className="treeContainer"
+          onKeyDown={handleKeyPress}
+          onKeyPress={handleKeyPress}
+          tabIndex={-1}
+        >
           <TreeBeardComponent
             className="TreeBeard"
             json={json}
@@ -74,7 +146,14 @@ function App() {
         </div>
         <div className="detailContainer">
           {/* <div>{selected}</div> */}
-          {selected && <DetailDisplay json={json} selected={selected} updateJson={updateJson} />}
+          {selected && (
+            <DetailDisplay
+              json={json}
+              selected={selected}
+              updateJson={updateJson}
+              setType={setType}
+            />
+          )}
         </div>
       </div>
       {/* <SortableTreeComponent json={sampleData}/> */}

@@ -7,10 +7,44 @@ import { useEffect } from "react";
 const TreeExample = (props) => {
   const { json, json2, selected } = props;
 
+  //   const decorators = {
+  //     Loading: (props) => {
+  //         return (
+  //             <div style={props.style}>
+  //                 loading...
+  //             </div>
+  //         );
+  //     },
+  //     Toggle: (props) => {
+  //         return (
+  //             <div style={props.style}>
+  //                 <svg height={props.height} width={props.width}>
+  //                     // Vector Toggle Here
+  //                 </svg>
+  //             </div>
+  //         );
+  //     },
+  //     Header: (props) => {
+  //         return (
+  //             <div style={props.style}>
+  //                 {props.node.name}
+  //             </div>
+  //         );
+  //     },
+  //     Container: (props) => {
+  //         return (
+  //             <div onClick={this.props.onClick}>
+  //                 // Hide Toggle When Terminal Here
+  //                 <this.props.decorators.Toggle/>
+  //                 <this.props.decorators.Header/>
+  //             </div>
+  //         );
+  //     }
+  // };
 
   // console.log(Object.entries(json.companies[0].departments[0].executive.emailAddress))
   function mapChildren3(json, path) {
-    console.log("length", Object.entries(json))
+    // console.log("length", Object.entries(json));
     let array = Object.entries(json).map(([key, value]) => {
       // console.log(key);
       // console.log(value);
@@ -21,30 +55,36 @@ const TreeExample = (props) => {
       //   name = key;
       // }
       let type;
+      let icon;
       for (type of DataTypes) {
         if (type.typeCheckFields.every((path) => _.has(value, path))) {
           // console.log("Found");
           // console.log(type.typeName);
-          if(type.typeName == "Person"){
-            if(key == "executive"){
+          if (type.typeName == "Person") {
+            icon = type.icon;
+            if (key == "executive") {
               name = type.display(key, value.firstName, value.lastName);
-            }
-            else{
+            } else {
               name = type.display2(value.firstName, value.lastName);
             }
-          }
-          else if(type.typeName == "Address"){
-              name = type.display(value.street, value.city, value.state, value.zipcode);
-          }
-          else if(type.typeName == "Name"){
+          } else if (type.typeName == "Address") {
+            icon = type.icon;
+            name = type.display(
+              value.street,
+              value.city,
+              value.state,
+              value.zipcode
+            );
+          } else if (type.typeName == "Name") {
+            icon = type.icon;
             name = type.display(value.name);
-        }
+          }
           // return type.details(chosen);
         }
         // console.log("not found");
       }
 
-      if(name.length == 0){
+      if (name.length == 0) {
         name = key;
       }
       // else{
@@ -67,12 +107,22 @@ const TreeExample = (props) => {
         //   // console.log("exist")
         //   name = `${key}: ${value.firstName} ${value.lastName}`;
         // }
-        if ((typeof value === 'object'))
+        if (typeof value === "object")
           return {
             id: path + `[${key}]`,
             name: name,
             toggled: true,
             children: mapChildren3(value, newpath),
+            decorators: {
+              Header: (props) => {
+                return (
+                  <div style={props.style} className="nodeContainer">
+                      <i class={`${icon}`}></i>
+                      <div className="nodeName">{props.node.name}</div>
+                  </div>
+                );
+              },
+            },
           };
         else {
           return null;
@@ -80,27 +130,28 @@ const TreeExample = (props) => {
       }
     });
     return array.filter(function (el) {
-      if(el && el.children && el.children.length==0){
+      if (el && el.children && el.children.length == 0) {
         delete el.children;
       }
       return el != null;
     });
   }
 
-  
-  
   // console.log("test3 ", test3);
-  
+
   // const stuff = {
-    //     name: "root",
-    //     toggled: true,
-    //     children: children,
-    //   };
-    const [data, setData] = useState(null);
-    const [cursor, setCursor] = useState(false);
-    const [choose, setSelected] = useState(null);
-    
-    useMemo(() => {const newData = mapChildren3(json, "");setData(newData)}, [json]);
+  //     name: "root",
+  //     toggled: true,
+  //     children: children,
+  //   };
+  const [data, setData] = useState(null);
+  const [cursor, setCursor] = useState(false);
+  const [choose, setSelected] = useState(null);
+
+  useMemo(() => {
+    const newData = mapChildren3(json, "");
+    setData(newData);
+  }, [json]);
   const onToggle = (node, toggled) => {
     if (cursor) {
       cursor.active = false;
@@ -116,9 +167,8 @@ const TreeExample = (props) => {
     // console.log(chosen);
     if (chosen && chosen.name) {
       setSelected(chosen.name);
-    }
-    else if(chosen && chosen.firstName && chosen.lastName){
-      setSelected(`${chosen.firstName} ${chosen.lastName}`)
+    } else if (chosen && chosen.firstName && chosen.lastName) {
+      setSelected(`${chosen.firstName} ${chosen.lastName}`);
     }
     // console.log(choose);
     if (Array.isArray(data)) {

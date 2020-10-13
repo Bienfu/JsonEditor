@@ -60,6 +60,10 @@ li {
 
 .treeContainer {
   grid-area: tree;
+  max-height: 60%;
+    min-height: 50px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .detailContainer {
@@ -84,4 +88,13 @@ li {
   display: inline-block;
   font-size: 16px;
   width: px;
+}
+
+.nodeName{
+  display: inline;
+  padding-left: 5px;
+}
+
+.nodeContainer{
+  display: inline;
 }

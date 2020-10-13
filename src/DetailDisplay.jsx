@@ -3,7 +3,7 @@ import _ from "lodash";
 import { DataTypes } from "./DataTypes";
 
 function DetailDisplay(props) {
-  const { json, selected, updateJson } = props;
+  const { json, selected, updateJson, setType } = props;
   // const chosen = _.get(json, selected, "default");
   // const [type, setType] = useState(selected);
   const [copy, setCopy] = useState();
@@ -19,6 +19,7 @@ function DetailDisplay(props) {
         if (type.typeCheckFields.every((path) => _.has(chosen, path))) {
           console.log("Found");
           console.log(type.typeName);
+          setType(type);
           return type;
         }
         console.log("not found");
