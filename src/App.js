@@ -90,11 +90,13 @@ function App() {
       const str = selected.substring(0, selected.indexOf("["));
       // console.log(str);
       const base = _.get(jsonCopy, str, "default");
-      base.push(copy);
-      setJson(jsonCopy);
-      const newPath = str + `[${base.length - 1}]`;
-      console.log("new path ", newPath);
-      setSelected(newPath);
+      if (Array.isArray(base)) {
+        base.push(copy);
+        setJson(jsonCopy);
+        const newPath = str + `[${base.length - 1}]`;
+        console.log("new path ", newPath);
+        setSelected(newPath);
+      }
     }
   }
 
