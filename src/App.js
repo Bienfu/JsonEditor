@@ -17,6 +17,7 @@ function App() {
   const [selected, setSelected] = useState(null);
   const [json, setJson] = useState(sampleData);
   const [selectedType, setType] = useState(null);
+  const [revertTree, setRevertTree] = useState({});
 
   function selectedFile(newFile) {
     const reader = new FileReader();
@@ -39,8 +40,26 @@ function App() {
 
   function updateJson(newBranch) {
     let newJson = { ...json };
+    if (revertTree) {
+      if (!revertTree[selected]) {
+        const newAddition = _.cloneDeep(_.get(json, selected));
+        // console.log("newAddition");
+        // console.log(newAddition);
+        const newRevert = { ...revertTree };
+        newRevert[selected] = newAddition;
+        setRevertTree(newRevert);
+      }
+    }
     _.set(newJson, selected, newBranch);
     setJson(newJson);
+  }
+
+  function revertJson() {
+    const oldData = revertTree[selected];
+    updateJson(oldData);
+    const newRevert = { ...revertTree };
+    newRevert[selected] = null;
+    setRevertTree(newRevert);
   }
 
   function addNew() {
@@ -150,9 +169,15 @@ function App() {
         onChange={(e) => selectedFile(e.target.files[0])}
       />
       <button onClick={download}>Download</button>
-      {selectedType && selectedType.canChange && <button onClick={addNew}>Add {selectedType.typeName}</button>}
-      {selectedType && selectedType.canChange && <button onClick={duplicateCurrent}>Duplicate</button>}
-      {selectedType && selectedType.canChange && <button onClick={remove}>Remove</button>}
+      {selectedType && selectedType.canChange && (
+        <button onClick={addNew}>Add {selectedType.typeName}</button>
+      )}
+      {selectedType && selectedType.canChange && (
+        <button onClick={duplicateCurrent}>Duplicate</button>
+      )}
+      {selectedType && selectedType.canChange && (
+        <button onClick={remove}>Remove</button>
+      )}
       <div className="content">
         <div
           className="treeContainer"
@@ -164,6 +189,7 @@ function App() {
             className="TreeBeard"
             json={json}
             selected={setSelected}
+            revertTree={revertTree}
           />
         </div>
         <div className="detailContainer">
@@ -174,6 +200,8 @@ function App() {
               selected={selected}
               updateJson={updateJson}
               setType={setType}
+              revertTree={revertTree}
+              revert={revertJson}
             />
           )}
         </div>

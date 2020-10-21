@@ -3,7 +3,7 @@ import _ from "lodash";
 import { DataTypes } from "./DataTypes";
 
 function DetailDisplay(props) {
-  const { json, selected, updateJson, setType } = props;
+  const { json, selected, updateJson, setType, revertTree, revert } = props;
   // const chosen = _.get(json, selected, "default");
   // const [type, setType] = useState(selected);
   const [copy, setCopy] = useState();
@@ -34,6 +34,11 @@ function DetailDisplay(props) {
     updateJson(copy);
   };
 
+  // const revert = (()=>{
+  //   const oldData = revertTree[selected];
+  //   updateJson(oldData)
+  // });
+
   const onChange = (evt) => {
     const name = evt.target.name;
     const value = evt.target.value;
@@ -46,7 +51,12 @@ function DetailDisplay(props) {
     });
   };
   if (copy && typeDefinition) {
-    return typeDefinition.details(copy, handleSubmit, onChange);
+    return (
+      <div>
+        {typeDefinition.details(copy, handleSubmit, onChange)}
+        {revertTree[selected]&&<button className="button" onClick={revert}>Undo</button>}
+      </div>
+    );
   }
   setType(null);
   return <div>Loading...</div>;

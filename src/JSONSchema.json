@@ -1,0 +1,142 @@
+{
+  "title": "Company List",
+  "description": "List of companies",
+  "type": "object",
+  "$ref": "#/definitions/root",
+  "definitions": {
+    "root": {
+      "properties": {
+        "companies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/company"
+          }
+        }
+      }
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/address"
+        },
+        "departments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/department"
+          }
+        }
+      },
+      "x-info": {
+        "icon": "icon name",
+        "name": "Company"
+      }
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        }
+      },
+      "x-info": {
+        "icon": "icon name",
+        "name": "Address",
+        "display":[
+          "state","zipcode"
+        ]
+      }
+    },
+    "department": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "string"
+        },
+        "executive": {
+          "type": "object",
+          "$ref": "#/definitions/user"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/user"
+          }
+        },
+        "employees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/employee"
+          }
+        }
+      },
+      "x-info": {
+        "icon": "icon name",
+        "name": "Department"
+      }
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        }
+      },
+      "x-info": {
+        "icon": "icon name",
+        "name": "User"
+      }
+    },
+    "employee": {
+      "type": "object",
+      "properties": {
+        "employeeId": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        }
+      },
+      "x-info": {
+        "icon": "icon name",
+        "name": "Employee"
+      }
+    }
+  }
+}

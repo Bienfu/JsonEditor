@@ -5,7 +5,8 @@ import _ from "lodash";
 import { useEffect } from "react";
 
 const TreeExample = (props) => {
-  const { json, json2, selected } = props;
+  const { json, json2, selected, revertTree } = props;
+  const fullJson = {...json};
 
   //   const decorators = {
   //     Loading: (props) => {
@@ -87,15 +88,25 @@ const TreeExample = (props) => {
       if (name.length == 0) {
         name = key;
       }
+
       // else{
       //   name = key;
       // }
       if (Array.isArray(value)) {
         // console.log("is Array");
         const newpath = path + `.${name}`;
+        let displayName = name;
+        if (revertTree[newpath.substring(1)]) {
+          // console.log("reverTree");
+          // console.log(revertTree);
+          // console.log("path ", path.substring(1))
+          // const oldName = name;
+          displayName = name.concat("*");
+          console.log("edited Name ",displayName);
+        }
         return {
           id: path + `.${name}`,
-          name: name,
+          name: displayName,
           toggled: true,
           children: mapChildren3(value, newpath),
         };
@@ -103,6 +114,17 @@ const TreeExample = (props) => {
         // console.log("is not Array");
         // console.log(Object.entries(value))
         const newpath = path + `.${key}`;
+        const checkPath = path + `[${key}]`;
+
+        let displayName = name;
+        if (revertTree[checkPath.substring(1)]) {
+          // console.log("reverTree");
+          // console.log(revertTree);
+          // console.log("path ", path.substring(1))
+          // const oldName = name;
+          displayName = name.concat("*");
+          console.log("edited Name ",displayName);
+        }
         // if (value && value.firstName && value.lastName) {
         //   // console.log("exist")
         //   name = `${key}: ${value.firstName} ${value.lastName}`;
@@ -110,15 +132,15 @@ const TreeExample = (props) => {
         if (typeof value === "object")
           return {
             id: path + `[${key}]`,
-            name: name,
+            name: displayName,
             toggled: true,
             children: mapChildren3(value, newpath),
             decorators: {
               Header: (props) => {
                 return (
                   <div style={props.style} className="nodeContainer">
-                      <i class={`${icon}`}></i>
-                      <div className="nodeName">{props.node.name}</div>
+                    <i class={`${icon}`}></i>
+                    <div className="nodeName">{props.node.name}</div>
                   </div>
                 );
               },
@@ -151,7 +173,7 @@ const TreeExample = (props) => {
   useMemo(() => {
     const newData = mapChildren3(json, "");
     setData(newData);
-  }, [json]);
+  }, [json,revertTree]);
   const onToggle = (node, toggled) => {
     if (cursor) {
       cursor.active = false;
