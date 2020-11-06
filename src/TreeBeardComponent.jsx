@@ -5,7 +5,7 @@ import _ from "lodash";
 import { useEffect } from "react";
 
 const TreeExample = (props) => {
-  const { json, schema, selected, revertTree } = props;
+  const { json, schema, selected, revertTree, toggleTree, setToggle } = props;
   const fullJson = { ...json };
 
   //   const decorators = {
@@ -116,10 +116,18 @@ const TreeExample = (props) => {
           displayName = name.concat("*");
           console.log("edited Name ", displayName);
         }
+        let toggleState = true;
+        console.log("new path", newpath)
+        // console.log(toggleTree[newpath]);
+        if(toggleTree && toggleTree[newpath]!= null){
+          console.log("Toggled!!!!")
+          toggleState = toggleTree[newpath];
+        }
+
         return {
           id: path + `.${name}`,
           name: displayName,
-          toggled: true,
+          toggled: toggleState,
           children: mapChildren3(value, newpath),
         };
       } else {
@@ -141,17 +149,22 @@ const TreeExample = (props) => {
         //   // console.log("exist")
         //   name = `${key}: ${value.firstName} ${value.lastName}`;
         // }
+        let toggleState = true;
+        if(toggleTree && toggleTree[checkPath]){
+          toggleState = toggleTree[checkPath];
+        }
         if (typeof value === "object")
           return {
             id: path + `[${key}]`,
             name: displayName,
-            toggled: true,
+            toggled: toggleState,
             children: mapChildren3(value, newpath),
             decorators: {
               Header: (props) => {
                 return (
                   <div style={props.style} className="nodeContainer">
                     <i class={`${icon}`}></i>
+                    {/* <img src="logo.svg" alt="Kiwi standing on oval"></img> */}
                     <div className="nodeName">{props.node.name}</div>
                   </div>
                 );
@@ -193,7 +206,12 @@ const TreeExample = (props) => {
     node.active = true;
     if (node.children) {
       node.toggled = toggled;
+      const newToggleTree = {...toggleTree};
+      newToggleTree[node.id] = toggled;
+      setToggle(newToggleTree);
     }
+    // console.log("node", toggled)
+    // console.log(node)
     setCursor(node);
     // console.log("path", node.id);
     selected(node.id.substring(1));

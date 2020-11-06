@@ -18,6 +18,7 @@ function App() {
   const [selectedType, setType] = useState(null);
   const [revertTree, setRevertTree] = useState({});
   const [timestamp, setTimestamp] = useState(0);
+  const [toggleTree, setToggleTree] = useState({});
   // const [schema, setSchema] = useState(schemaData);
 
   function selectedFile(newFile) {
@@ -205,6 +206,8 @@ function App() {
             selected={setSelected}
             revertTree={revertTree}
             schema={schemaData}
+            toggleTree={toggleTree}
+            setToggle={setToggleTree}
           />
         </div>
         <div className="detailContainer">
