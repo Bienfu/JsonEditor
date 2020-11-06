@@ -18,6 +18,7 @@
       "type": "object",
       "properties": {
         "name": {
+          "title": "Name",
           "type": "string"
         },
         "address": {
@@ -39,15 +40,19 @@
       "type": "object",
       "properties": {
         "street": {
+          "title": "Street",
           "type": "string"
         },
         "city": {
+          "title": "City",
           "type": "string"
         },
         "state": {
+          "title": "State",
           "type": "string"
         },
         "zipcode": {
+          "title": "Zipcode",
           "type": "string"
         }
       },
@@ -63,9 +68,11 @@
       "type": "object",
       "properties": {
         "name": {
+          "title": "Name",
           "type": "string"
         },
         "budget": {
+          "title": "Budget",
           "type": "string"
         },
         "executive": {
@@ -94,18 +101,23 @@
       "type": "object",
       "properties": {
         "userId": {
+          "title": "User ID",
           "type": "integer"
         },
         "firstName": {
+          "title": "First Name",
           "type": "string"
         },
         "lastName": {
+          "title": "Last Name",
           "type": "string"
         },
         "phoneNumber": {
+          "title": "Phone Number",
           "type": "string"
         },
         "emailAddress": {
+          "title": "Email Address",
           "type": "string"
         }
       },
@@ -118,18 +130,23 @@
       "type": "object",
       "properties": {
         "employeeId": {
+          "title": "Employee ID",
           "type": "integer"
         },
         "firstName": {
+          "title": "First Name",
           "type": "string"
         },
         "lastName": {
+          "title": "Last Name",
           "type": "string"
         },
         "phoneNumber": {
+          "title": "Phone Number",
           "type": "string"
         },
         "emailAddress": {
+          "title": "Email Address",
           "type": "string"
         }
       },

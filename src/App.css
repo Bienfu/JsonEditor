@@ -37,6 +37,10 @@
   }
 }
 
+input[type="file"] {
+  display: none;
+}
+
 .JSONDisplay {
   width: 50%;
   text-align: left;
@@ -60,14 +64,16 @@ li {
 
 .treeContainer {
   grid-area: tree;
-  max-height: 60%;
-    min-height: 50px;
+  max-height: 100vh;
+  /* max-height: 60%; */
+    /* min-height: 50px; */
     overflow: scroll;
     overflow-x: hidden;
 }
 
 .detailContainer {
   grid-area: detail;
+  max-height: 100vh;
 }
 
 .DetailDisplayContainer{
@@ -104,4 +110,8 @@ li {
 
 .nodeContainer{
   display: inline;
+}
+
+.uploadButton{
+  margin-right: 50px;
 }

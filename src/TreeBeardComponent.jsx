@@ -5,8 +5,8 @@ import _ from "lodash";
 import { useEffect } from "react";
 
 const TreeExample = (props) => {
-  const { json, json2, selected, revertTree } = props;
-  const fullJson = {...json};
+  const { json, schema, selected, revertTree } = props;
+  const fullJson = { ...json };
 
   //   const decorators = {
   //     Loading: (props) => {
@@ -61,25 +61,37 @@ const TreeExample = (props) => {
         if (type.typeCheckFields.every((path) => _.has(value, path))) {
           // console.log("Found");
           // console.log(type.typeName);
+          let displayString = type.display.map((x) => value[x]);
           if (type.typeName == "Person") {
+
             icon = type.icon;
             if (key == "executive") {
-              name = type.display(key, value.firstName, value.lastName);
+              name = key.concat(" ".concat(displayString.join(" ")));
             } else {
-              name = type.display2(value.firstName, value.lastName);
+              name = displayString.join(" ");
             }
           } else if (type.typeName == "Address") {
+
             icon = type.icon;
-            name = type.display(
-              value.street,
-              value.city,
-              value.state,
-              value.zipcode
-            );
-          } else if (type.typeName == "Name") {
+            // name = type.display(
+            //   value.street,
+            //   value.city,
+            //   value.state,
+            //   value.zipcode
+            // );
+            name = displayString.join(", ");
+          } else if (
+            type.typeName == "Company" ||
+            type.typeName == "Department"
+          ) {
+
             icon = type.icon;
-            name = type.display(value.name);
+            // name = type.display(value.name);
+            name = displayString.join(" ");
           }
+          // const schemaType = _.get(schema, type.schema.substring(2).replace("/", "."));
+          // schemaType.properties.every(())
+
           // return type.details(chosen);
         }
         // console.log("not found");
@@ -102,7 +114,7 @@ const TreeExample = (props) => {
           // console.log("path ", path.substring(1))
           // const oldName = name;
           displayName = name.concat("*");
-          console.log("edited Name ",displayName);
+          console.log("edited Name ", displayName);
         }
         return {
           id: path + `.${name}`,
@@ -123,7 +135,7 @@ const TreeExample = (props) => {
           // console.log("path ", path.substring(1))
           // const oldName = name;
           displayName = name.concat("*");
-          console.log("edited Name ",displayName);
+          console.log("edited Name ", displayName);
         }
         // if (value && value.firstName && value.lastName) {
         //   // console.log("exist")
@@ -173,7 +185,7 @@ const TreeExample = (props) => {
   useMemo(() => {
     const newData = mapChildren3(json, "");
     setData(newData);
-  }, [json,revertTree]);
+  }, [json, revertTree]);
   const onToggle = (node, toggled) => {
     if (cursor) {
       cursor.active = false;

@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import JSONDisplay from "./JSONDisplay";
 import sampleData from "./sampleData.json";
-import sampleData2 from "./sampleData2.json";
+import schemaData from "./JSONSchema.json";
 import DetailDisplay from "./DetailDisplay";
 import TreeBeardComponent from "./TreeBeardComponent";
 import SortableTreeComponent from "./SortableTreeComponent";
@@ -13,11 +13,12 @@ import { DataTypes } from "./DataTypes";
 import _ from "lodash";
 
 function App() {
-  console.log(sampleData);
   const [selected, setSelected] = useState(null);
   const [json, setJson] = useState(sampleData);
   const [selectedType, setType] = useState(null);
   const [revertTree, setRevertTree] = useState({});
+  const [timestamp, setTimestamp] = useState(0);
+  // const [schema, setSchema] = useState(schemaData);
 
   function selectedFile(newFile) {
     const reader = new FileReader();
@@ -25,6 +26,9 @@ function App() {
       try {
         const content = JSON.parse(e.target.result);
         setJson(content);
+        setRevertTree({});
+        setSelected(null);
+        setType(null);
       } catch (err) {
         console.log("failed to load file: ", err);
       }
@@ -59,6 +63,7 @@ function App() {
     updateJson(oldData);
     const newRevert = { ...revertTree };
     newRevert[selected] = null;
+    setTimestamp(timestamp+1);
     setRevertTree(newRevert);
   }
 
@@ -74,9 +79,9 @@ function App() {
       if (Array.isArray(base)) {
         console.log("isArray");
         // console.log(Object.keys(base));
-        if (str == "companies" && selectedType.typeName == "Name") {
+        if (selectedType.typeName == "Company") {
           base.push(selectedType.blankCompany);
-        } else if (selectedType.typeName == "Name") {
+        } else if (selectedType.typeName == "Department") {
           base.push(selectedType.blankDepartment);
         } else if (selectedType.typeName == "Person") {
           base.push(selectedType.blank);
@@ -163,7 +168,11 @@ function App() {
         </a> */}
       {/* </header> */}
       {/* <JSONDisplay json={sampleData} select={setSelected}/> */}
+      <label for="file-upload" class="custom-file-upload">
+        <button className="uploadButton">Upload</button>
+      </label>
       <input
+        id="file-upload"
         type="file"
         name="file"
         onChange={(e) => selectedFile(e.target.files[0])}
@@ -178,6 +187,11 @@ function App() {
       {selectedType && selectedType.canChange && (
         <button onClick={remove}>Remove</button>
       )}
+      {revertTree[selected] && (
+          <button className="button" onClick={revertJson}>
+            Undo
+          </button>
+        )}
       <div className="content">
         <div
           className="treeContainer"
@@ -190,18 +204,21 @@ function App() {
             json={json}
             selected={setSelected}
             revertTree={revertTree}
+            schema={schemaData}
           />
         </div>
         <div className="detailContainer">
           {/* <div>{selected}</div> */}
           {selected && (
             <DetailDisplay
+              key={timestamp}
               json={json}
               selected={selected}
               updateJson={updateJson}
               setType={setType}
               revertTree={revertTree}
               revert={revertJson}
+              schema={schemaData}
             />
           )}
         </div>

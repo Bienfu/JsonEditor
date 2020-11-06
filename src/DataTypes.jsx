@@ -2,16 +2,20 @@ import React, { useState, useCallback } from "react";
 export const DataTypes = [
   {
     typeName: "Person",
+    schema: "#/definitions/user",
     typeCheckFields: ["firstName", "lastName"],
     icon: "fas fa-user",
-    display: (key, firstName, lastName) => `${key}: ${firstName} ${lastName} `,
+    // display: (key, firstName, lastName) => `${key}: ${firstName} ${lastName} `,
+    display: ["firstName", "lastName"],
     display2: (firstName, lastName) => `${firstName} ${lastName} `,
-    details: (chosen, handleSubmit, onChange) => (
+    include: ["firstName", "lastName"],
+    isEditable: ["firstName", "lastName"],
+    details: (chosen, handleSubmit, onChange, schemaProps) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <div className="formFirstName">
+            {/* <div className="formFirstName">
               <label for="fname">First name:</label>
               <input
                 type="text"
@@ -30,7 +34,22 @@ export const DataTypes = [
                 value={chosen.lastName}
                 onChange={onChange}
               />
-            </div>
+            </div> */}
+            {Object.entries(schemaProps).map(([key, value]) => {
+              return(
+
+                <div key={key} className={"form"+key}>
+                <label for={key}>{value.title}:</label>
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={chosen[key]}
+                  onChange={onChange}
+                  />
+              </div>
+                  )
+            })}
             <button className="Button" type="submit">
               Submit
             </button>
@@ -48,16 +67,19 @@ export const DataTypes = [
   },
   {
     typeName: "Address",
+    schema: "#/definitions/address",
     typeCheckFields: ["city", "street", "zipcode"],
     icon: "fas fa-map-marker-alt",
-    display: (street, city, state, zipcode) =>
-      `${street}, ${city}, ${state} ${zipcode}`,
-    details: (chosen, handleSubmit, onChange) => (
+    // display: (street, city, state, zipcode) =>
+    //   `${street}, ${city}, ${state} ${zipcode}`,
+    display: ["street", "city", "state", "zipcode"],
+    isEditable: ["street", "city", "state", "zipcode"],
+    details: (chosen, handleSubmit, onChange, schemaProps) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <div className="formStreet">
+            {/* <div className="formStreet">
               <label for="street">Street:</label>
               <input
                 type="text"
@@ -96,6 +118,22 @@ export const DataTypes = [
                 value={chosen.zipcode}
               />
             </div>
+             */}
+             {Object.entries(schemaProps).map(([key, value]) => {
+              return(
+
+                <div key={key} className={"form"+key}>
+                <label for={key}>{value.title}:</label>
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={chosen[key]}
+                  onChange={onChange}
+                  />
+              </div>
+                  )
+            })}
             <button className="Button" type="submit">
               Submit
             </button>
@@ -112,16 +150,19 @@ export const DataTypes = [
     canChange: false,
   },
   {
-    typeName: "Name",
-    typeCheckFields: ["name"],
+    typeName: "Department",
+    schema: "#/definitions/department",
+    typeCheckFields: ["name", "budget"],
     icon: "fas fa-building",
-    display: (name) => `${name}`,
-    details: (chosen, handleSubmit, onChange) => (
+    // display: (name) => `${name}`,
+    display: ["name"],
+    isEditable: ["name"],
+    details: (chosen, handleSubmit, onChange, schemaProps) => (
       <div className="DetailDisplay">
         <div className="DetailDisplayContainer">
           {/* <div>User ID: {chosen.userId}</div> */}
           <form onSubmit={handleSubmit}>
-            <div className="formName">
+            {/* <div className="formName">
               <label for="name">Name:</label>
               <input
                 type="text"
@@ -130,7 +171,24 @@ export const DataTypes = [
                 value={chosen.name}
                 onChange={onChange}
               />
-            </div>
+            </div> */}
+            {Object.entries(schemaProps).map(([key, value]) => {
+              if(value.type == "string"){
+
+                return(
+                  <div key={key} className={"form"+key}>
+                <label for={key}>{value.title}:</label>
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={chosen[key]}
+                  onChange={onChange}
+                  />
+              </div>
+                  )
+                }
+            })}
             {/* <label for="lname">Last name:</label>
             <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
             <button className="Button" type="submit">
@@ -169,6 +227,57 @@ export const DataTypes = [
         },
       ],
     },
+    canChange: true,
+  },
+  {
+    typeName: "Company",
+    schema: "#/definitions/company",
+    typeCheckFields: ["name", "address"],
+    icon: "fas fa-building",
+    // display: (name) => `${name}`,
+    display: ["name"],
+    isEditable: ["name"],
+    details: (chosen, handleSubmit, onChange, schemaProps) => (
+      <div className="DetailDisplay">
+        <div className="DetailDisplayContainer">
+          {/* <div>User ID: {chosen.userId}</div> */}
+          <form onSubmit={handleSubmit}>
+            {/* <div className="formName">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={chosen.name}
+                onChange={onChange}
+              />
+            </div> */}
+            {Object.entries(schemaProps).map(([key, value]) => {
+              if(value.type == "string"){
+
+                return(
+                  <div key={key} className={"form"+key}>
+                <label for={key}>{value.title}:</label>
+                <input
+                  type="text"
+                  id={key}
+                  name={key}
+                  value={chosen[key]}
+                  onChange={onChange}
+                  />
+              </div>
+                  )
+                }
+            })}
+            {/* <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
+            <button className="Button" type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    ),
     blankCompany: {
       name: "Company Name",
       address: {
