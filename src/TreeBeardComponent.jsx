@@ -162,10 +162,15 @@ const TreeExample = (props) => {
           // console.log(parentType.typeName)
           // console.log("value ", value)
           const newpath = path + `.${key}`;
+          let toggleState = true;
+          if(toggleTree && toggleTree[newpath]!= null){
+            // console.log("Toggled!!!!")
+            toggleState = toggleTree[newpath];
+          }
           return {
             id: newpath,
             name: `${key}: ${value}`,
-            toggled: true,
+            toggled: toggleState,
           }
         }
         else
@@ -174,13 +179,18 @@ const TreeExample = (props) => {
       else if (typeof value === "string" && !isSample){
         const jobDefinition = DataTypes[DataTypes.length-1];
         if (!jobDefinition.includeDetail.includes(key)){
-
+          
           const newpath = path + `.${key}`;
+          let toggleState = true;
+            if(toggleTree && toggleTree[newpath]!= null){
+              // console.log("Toggled!!!!")
+              toggleState = toggleTree[newpath];
+            }
           if (DataTypes)
           return {
             id: newpath,
             name: `${key}: ${value}`,
-            toggled: true,
+            toggled: toggleState,
           }
           else{
             return null;
@@ -189,10 +199,15 @@ const TreeExample = (props) => {
       }
       else if (typeof value === "string"){
         const newpath = path + `.${key}`;
+        let toggleState = true;
+        if(toggleTree && toggleTree[newpath]!= null){
+          // console.log("Toggled!!!!")
+          toggleState = toggleTree[newpath];
+        }
           return {
             id: newpath,
             name: `${key}: ${value}`,
-            toggled: true,
+            toggled: toggleState,
           }
       }
     });

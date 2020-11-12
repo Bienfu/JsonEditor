@@ -16,7 +16,7 @@ import _ from "lodash";
 
 function App() {
   const [selected, setSelected] = useState(null);
-  const [json, setJson] = useState(swaggerData);
+  const [json, setJson] = useState(sampleData);
   const [selectedType, setType] = useState(null);
   const [revertTree, setRevertTree] = useState({});
   const [timestamp, setTimestamp] = useState(0);
