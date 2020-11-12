@@ -229,7 +229,7 @@ function DetailDisplay(props) {
                   return (
                     <div key={value} className={"form" + value}>
                       <label for={value}>{value}:</label>
-                      <div>{chosen[value]}</div>
+                      <div className="readOnlyText">{chosen[value]}</div>
                     </div>
                   );
                 }

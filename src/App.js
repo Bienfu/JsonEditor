@@ -66,7 +66,7 @@ function App() {
     updateJson(oldData);
     const newRevert = { ...revertTree };
     newRevert[selected] = null;
-    setTimestamp(timestamp+1);
+    setTimestamp(timestamp + 1);
     setRevertTree(newRevert);
   }
 
@@ -171,32 +171,55 @@ function App() {
         </a> */}
       {/* </header> */}
       {/* <JSONDisplay json={sampleData} select={setSelected}/> */}
-      <label for="file-upload" class="custom-file-upload">
+      {/* <label for="file-upload" className="Button">
         <button className="uploadButton">Upload</button>
-      </label>
+      </label> */}
       <input
         id="file-upload"
         type="file"
-        name="file"
+        name="file-upload"
         onChange={(e) => selectedFile(e.target.files[0])}
       />
-      <button onClick={download}>Download</button>
-      {(
-        <button onClick={addNew} disabled={selectedType?!selectedType.canChange:true}>Add</button>
 
-        
-      )}
-      {(
-        <button onClick={duplicateCurrent} disabled={selectedType?!selectedType.canChange:true}>Duplicate</button>
-      )}
-      {(
-        <button onClick={remove }disabled={selectedType?!selectedType.canChange:true}>Remove</button>
-      )}
+      {/* <input
+        type="file-upload"
+        name="file-upload"
+        onChange={(e) => selectedFile(e.target.files[0])}
+        className="inputfile"
+      /> */}
+      <label for="file-upload">
+        <div className="ButtonInput">Select file to upload</div>
+      </label>
+      <button onClick={download}>Download</button>
+      {
+        <button
+          onClick={addNew}
+          disabled={selectedType ? !selectedType.canChange : true}
+        >
+          Add
+        </button>
+      }
+      {
+        <button
+          onClick={duplicateCurrent}
+          disabled={selectedType ? !selectedType.canChange : true}
+        >
+          Duplicate
+        </button>
+      }
+      {
+        <button
+          onClick={remove}
+          disabled={selectedType ? !selectedType.canChange : true}
+        >
+          Remove
+        </button>
+      }
       {revertTree[selected] && (
-          <button className="button" onClick={revertJson}>
-            Undo
-          </button>
-        )}
+        <button className="button" onClick={revertJson}>
+          Undo
+        </button>
+      )}
       <div className="content">
         <div
           className="treeContainer"

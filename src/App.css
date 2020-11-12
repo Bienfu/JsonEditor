@@ -100,7 +100,6 @@ li {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  width: px;
 }
 
 .nodeName{
@@ -113,5 +112,30 @@ li {
 }
 
 .uploadButton{
+  /* margin-right: 50px; */
+}
+
+.readOnlyText{
+  display: inline;
+  padding-left: 10px;
+}
+
+.custom-file-upload{
   margin-right: 50px;
+}
+
+.ButtonInput {
+  background-color: rgb(221, 214, 214); /* Green */
+  border: none;
+  color: black;
+  padding: 5px 5px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}
+
+.inputFile{
+  display: none;
 }

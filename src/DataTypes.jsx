@@ -172,6 +172,22 @@ export const DataTypes = [
     canChange: false,
   },
   {
+    typeName: "Organization",
+    schema: "#/components/schemas/Job/properties",
+    typeCheckFields: ["displayName", "id"],
+    icon: "fas fa-user",
+    display: ["displayName"],
+    include: [],
+    includeDetail: ["displayName"],
+    isEditable: ["displayName"],
+    schemaFile: swaggerSchema,
+    blank: {
+      displayName: "AA",
+      id: "XX:AA"
+    },
+    canChange: false,
+  },
+  {
     typeName: "Job",
     schema: "#/components/schemas/Job/properties",
     typeCheckFields: [],
