@@ -1,0 +1,1409 @@
+{
+    "openapi": "3.0.0",
+    "type": "object",
+    "$ref": "#/components/schemas/Job",
+    "components": {
+        "schemas": {
+            "Job": {
+                "properties": {
+                    "account": {
+                        "readOnly": true,
+                        "x-gw-referenceType": "Account",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "maxLength": 40,
+                                "minLength": 1,
+                                "pattern": "\\S"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "refid": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "x-gw-ui-ignoreProperties": true
+                    },
+                    "baseState": {
+                        "readOnly": true,
+                        "x-gw-typelist": "Jurisdiction",
+                        "enum": [
+                            {
+                                "code": "AU_ACT",
+                                "name": "A.C.T."
+                            },
+                            {
+                                "code": "AL",
+                                "name": "Alabama"
+                            },
+                            {
+                                "code": "AK",
+                                "name": "Alaska"
+                            },
+                            {
+                                "code": "AB",
+                                "name": "Alberta"
+                            },
+                            {
+                                "code": "AZ",
+                                "name": "Arizona"
+                            },
+                            {
+                                "code": "AR",
+                                "name": "Arkansas"
+                            },
+                            {
+                                "code": "DE_BW",
+                                "name": "Baden-Wuerttemberg"
+                            },
+                            {
+                                "code": "DE_BY",
+                                "name": "Bavaria"
+                            },
+                            {
+                                "code": "DE_BE",
+                                "name": "Berlin"
+                            },
+                            {
+                                "code": "DE_BB",
+                                "name": "Brandenburg"
+                            },
+                            {
+                                "code": "DE_HB",
+                                "name": "Bremen"
+                            },
+                            {
+                                "code": "BC",
+                                "name": "British Columbia"
+                            },
+                            {
+                                "code": "CA",
+                                "name": "California"
+                            },
+                            {
+                                "code": "CO",
+                                "name": "Colorado"
+                            },
+                            {
+                                "code": "CT",
+                                "name": "Connecticut"
+                            },
+                            {
+                                "code": "DE",
+                                "name": "Delaware"
+                            },
+                            {
+                                "code": "DC",
+                                "name": "District of Columbia"
+                            },
+                            {
+                                "code": "FM",
+                                "name": "Federated States of Micronesia"
+                            },
+                            {
+                                "code": "FL",
+                                "name": "Florida"
+                            },
+                            {
+                                "code": "FR",
+                                "name": "France"
+                            },
+                            {
+                                "code": "GA",
+                                "name": "Georgia"
+                            },
+                            {
+                                "code": "GU",
+                                "name": "Guam"
+                            },
+                            {
+                                "code": "DE_HH",
+                                "name": "Hamburg"
+                            },
+                            {
+                                "code": "HI",
+                                "name": "Hawaii"
+                            },
+                            {
+                                "code": "DE_HE",
+                                "name": "Hesse"
+                            },
+                            {
+                                "code": "ID",
+                                "name": "Idaho"
+                            },
+                            {
+                                "code": "IL",
+                                "name": "Illinois"
+                            },
+                            {
+                                "code": "IN",
+                                "name": "Indiana"
+                            },
+                            {
+                                "code": "IA",
+                                "name": "Iowa"
+                            },
+                            {
+                                "code": "AU_JBT",
+                                "name": "J.B.T."
+                            },
+                            {
+                                "code": "JP",
+                                "name": "Japan"
+                            },
+                            {
+                                "code": "KS",
+                                "name": "Kansas"
+                            },
+                            {
+                                "code": "KY",
+                                "name": "Kentucky"
+                            },
+                            {
+                                "code": "LA",
+                                "name": "Louisiana"
+                            },
+                            {
+                                "code": "DE_NI",
+                                "name": "Lower Saxony"
+                            },
+                            {
+                                "code": "ME",
+                                "name": "Maine"
+                            },
+                            {
+                                "code": "MB",
+                                "name": "Manitoba"
+                            },
+                            {
+                                "code": "MH",
+                                "name": "Marshall Islands"
+                            },
+                            {
+                                "code": "MD",
+                                "name": "Maryland"
+                            },
+                            {
+                                "code": "MA",
+                                "name": "Massachusetts"
+                            },
+                            {
+                                "code": "DE_MV",
+                                "name": "Mecklenburg-Vorpommern"
+                            },
+                            {
+                                "code": "MI",
+                                "name": "Michigan"
+                            },
+                            {
+                                "code": "MN",
+                                "name": "Minnesota"
+                            },
+                            {
+                                "code": "MS",
+                                "name": "Mississippi"
+                            },
+                            {
+                                "code": "MO",
+                                "name": "Missouri"
+                            },
+                            {
+                                "code": "MT",
+                                "name": "Montana"
+                            },
+                            {
+                                "code": "NE",
+                                "name": "Nebraska"
+                            },
+                            {
+                                "code": "NV",
+                                "name": "Nevada"
+                            },
+                            {
+                                "code": "NB",
+                                "name": "New Brunswick"
+                            },
+                            {
+                                "code": "NH",
+                                "name": "New Hampshire"
+                            },
+                            {
+                                "code": "NJ",
+                                "name": "New Jersey"
+                            },
+                            {
+                                "code": "NM",
+                                "name": "New Mexico"
+                            },
+                            {
+                                "code": "AU_NSW",
+                                "name": "New South Wales"
+                            },
+                            {
+                                "code": "NY",
+                                "name": "New York"
+                            },
+                            {
+                                "code": "NL",
+                                "name": "Newfoundland and Labrador"
+                            },
+                            {
+                                "code": "NC",
+                                "name": "North Carolina"
+                            },
+                            {
+                                "code": "ND",
+                                "name": "North Dakota"
+                            },
+                            {
+                                "code": "DE_NW",
+                                "name": "North Rhine-Westphalia"
+                            },
+                            {
+                                "code": "MP",
+                                "name": "Northern Mariana Islands"
+                            },
+                            {
+                                "code": "AU_NT",
+                                "name": "Northern Territory"
+                            },
+                            {
+                                "code": "NT",
+                                "name": "Northwest Territories"
+                            },
+                            {
+                                "code": "NS",
+                                "name": "Nova Scotia"
+                            },
+                            {
+                                "code": "NU",
+                                "name": "Nunavut"
+                            },
+                            {
+                                "code": "OH",
+                                "name": "Ohio"
+                            },
+                            {
+                                "code": "OK",
+                                "name": "Oklahoma"
+                            },
+                            {
+                                "code": "ON",
+                                "name": "Ontario"
+                            },
+                            {
+                                "code": "OR",
+                                "name": "Oregon"
+                            },
+                            {
+                                "code": "PA",
+                                "name": "Pennsylvania"
+                            },
+                            {
+                                "code": "PE",
+                                "name": "Prince Edward Island"
+                            },
+                            {
+                                "code": "PR",
+                                "name": "Puerto Rico"
+                            },
+                            {
+                                "code": "QC",
+                                "name": "Quebec"
+                            },
+                            {
+                                "code": "AU_QLD",
+                                "name": "Queensland"
+                            },
+                            {
+                                "code": "DE_RP",
+                                "name": "Rhineland-Palatinate"
+                            },
+                            {
+                                "code": "RI",
+                                "name": "Rhode Island"
+                            },
+                            {
+                                "code": "DE_SL",
+                                "name": "Saarland"
+                            },
+                            {
+                                "code": "SK",
+                                "name": "Saskatchewan"
+                            },
+                            {
+                                "code": "DE_SN",
+                                "name": "Saxony"
+                            },
+                            {
+                                "code": "DE_ST",
+                                "name": "Saxony-Anhalt"
+                            },
+                            {
+                                "code": "DE_SH",
+                                "name": "Schleswig-Holstein"
+                            },
+                            {
+                                "code": "AU_SA",
+                                "name": "South Australia"
+                            },
+                            {
+                                "code": "SC",
+                                "name": "South Carolina"
+                            },
+                            {
+                                "code": "SD",
+                                "name": "South Dakota"
+                            },
+                            {
+                                "code": "AU_TAS",
+                                "name": "Tasmania"
+                            },
+                            {
+                                "code": "TN",
+                                "name": "Tennessee"
+                            },
+                            {
+                                "code": "TX",
+                                "name": "Texas"
+                            },
+                            {
+                                "code": "DE_TH",
+                                "name": "Thuringia"
+                            },
+                            {
+                                "code": "GB",
+                                "name": "United Kingdom"
+                            },
+                            {
+                                "code": "UT",
+                                "name": "Utah"
+                            },
+                            {
+                                "code": "VT",
+                                "name": "Vermont"
+                            },
+                            {
+                                "code": "AU_VIC",
+                                "name": "Victoria"
+                            },
+                            {
+                                "code": "VI",
+                                "name": "Virgin Islands"
+                            },
+                            {
+                                "code": "VA",
+                                "name": "Virginia"
+                            },
+                            {
+                                "code": "WA",
+                                "name": "Washington"
+                            },
+                            {
+                                "code": "WV",
+                                "name": "West Virginia"
+                            },
+                            {
+                                "code": "AU_WA",
+                                "name": "Western Australia"
+                            },
+                            {
+                                "code": "WI",
+                                "name": "Wisconsin"
+                            },
+                            {
+                                "code": "WY",
+                                "name": "Wyoming"
+                            },
+                            {
+                                "code": "YT",
+                                "name": "Yukon"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "calculationMethod": {
+                        "readOnly": true,
+                        "x-gw-typelist": "CalculationMethod",
+                        "enum": [
+                            {
+                                "code": "flat",
+                                "name": "Flat"
+                            },
+                            {
+                                "code": "prorata",
+                                "name": "Pro rata"
+                            },
+                            {
+                                "code": "shortrate",
+                                "name": "Short rate"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "cancellationReasonCode": {
+                        "readOnly": true,
+                        "x-gw-filterBy": [
+                            "cancellationSource"
+                        ],
+                        "x-gw-typelist": "ReasonCode",
+                        "enum": [
+                            {
+                                "code": "cancel",
+                                "name": "Cancellation of underlying insurance"
+                            },
+                            {
+                                "code": "condemn",
+                                "name": "Condemned/unsafe"
+                            },
+                            {
+                                "code": "criminal",
+                                "name": "Criminal conduct by the insured"
+                            },
+                            {
+                                "code": "ProdRequirements",
+                                "name": "Does not meet program/product requirements"
+                            },
+                            {
+                                "code": "failsafe",
+                                "name": "Failure to comply with safety recommendations"
+                            },
+                            {
+                                "code": "failterm",
+                                "name": "Failure to comply with terms and conditions"
+                            },
+                            {
+                                "code": "failcoop",
+                                "name": "Failure to cooperate"
+                            },
+                            {
+                                "code": "fraud",
+                                "name": "Fraud"
+                            },
+                            {
+                                "code": "fincononpay",
+                                "name": "Insured's request - (finance co. nonpay)"
+                            },
+                            {
+                                "code": "noc",
+                                "name": "Insured's request - N.O.C"
+                            },
+                            {
+                                "code": "LossHistory",
+                                "name": "Loss history"
+                            },
+                            {
+                                "code": "reinsurance",
+                                "name": "Loss of reinsurance"
+                            },
+                            {
+                                "code": "noemployee",
+                                "name": "No employees/operations"
+                            },
+                            {
+                                "code": "eligibility",
+                                "name": "No longer eligible for group or program"
+                            },
+                            {
+                                "code": "nondisclose",
+                                "name": "Non disclosure of losses or underwriting information"
+                            },
+                            {
+                                "code": "nonpayment",
+                                "name": "Non-payment"
+                            },
+                            {
+                                "code": "nonreport",
+                                "name": "Non-report of payroll or failure to cooperate"
+                            },
+                            {
+                                "code": "OpsChars",
+                                "name": "Operations characteristics"
+                            },
+                            {
+                                "code": "sold",
+                                "name": "Out of business/sold"
+                            },
+                            {
+                                "code": "wrapup",
+                                "name": "Participation in wrap-up complete"
+                            },
+                            {
+                                "code": "PaymentHistory",
+                                "name": "Payment history"
+                            },
+                            {
+                                "code": "nottaken",
+                                "name": "Policy not-taken"
+                            },
+                            {
+                                "code": "midtermrewrite",
+                                "name": "Policy rewritten (mid-term)"
+                            },
+                            {
+                                "code": "flatrewrite",
+                                "name": "Policy rewritten or replaced (flat cancel)"
+                            },
+                            {
+                                "code": "ProductsChars",
+                                "name": "Products characteristics"
+                            },
+                            {
+                                "code": "CovsNotAvailable",
+                                "name": "Requested coverages/limits not available"
+                            },
+                            {
+                                "code": "InfoNotProvided",
+                                "name": "Required information not provided"
+                            },
+                            {
+                                "code": "riskchange",
+                                "name": "Substantial change in risk or increase in hazard"
+                            },
+                            {
+                                "code": "suspension",
+                                "name": "Suspension or revocation of license or permits"
+                            },
+                            {
+                                "code": "uwreasons",
+                                "name": "Underwriting reasons"
+                            },
+                            {
+                                "code": "unresolvedcontingency",
+                                "name": "Unresolved Contingency"
+                            },
+                            {
+                                "code": "vacant",
+                                "name": "Vacant; below occupancy limit"
+                            },
+                            {
+                                "code": "violation",
+                                "name": "Violation of health, safety, fire, or codes"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "cancellationSource": {
+                        "readOnly": true,
+                        "x-gw-typelist": "CancellationSource",
+                        "enum": [
+                            {
+                                "code": "insured",
+                                "name": "Insured"
+                            },
+                            {
+                                "code": "carrier",
+                                "name": "Insurer"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "changePolicyNumber": {
+                        "type": "boolean"
+                    },
+                    "createdDate": {
+                        "format": "date-time",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "description": {
+                        "maxLength": 1333,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "\\S",
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "jobEffectiveDate": {
+                        "format": "date-time",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "jobNumber": {
+                        "maxLength": 60,
+                        "minLength": 1,
+                        "pattern": "\\S",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "jobStatus": {
+                        "readOnly": true,
+                        "x-gw-typelist": "PolicyPeriodStatus",
+                        "enum": [
+                            {
+                                "code": "Draft",
+                                "name": "Draft"
+                            },
+                            {
+                                "code": "Rated",
+                                "name": "Rated"
+                            },
+                            {
+                                "code": "Temporary",
+                                "name": "Temporary"
+                            },
+                            {
+                                "code": "Withdrawn",
+                                "name": "Withdrawn"
+                            },
+                            {
+                                "code": "Declined",
+                                "name": "Declined"
+                            },
+                            {
+                                "code": "Expired",
+                                "name": "Expired"
+                            },
+                            {
+                                "code": "New",
+                                "name": "New"
+                            },
+                            {
+                                "code": "NonRenewing",
+                                "name": "Non-renewing"
+                            },
+                            {
+                                "code": "Quoted",
+                                "name": "Quoted"
+                            },
+                            {
+                                "code": "Quoting",
+                                "name": "Quoting"
+                            },
+                            {
+                                "code": "Binding",
+                                "name": "Binding"
+                            },
+                            {
+                                "code": "Bound",
+                                "name": "Bound"
+                            },
+                            {
+                                "code": "Canceling",
+                                "name": "Canceling"
+                            },
+                            {
+                                "code": "AuditComplete",
+                                "name": "Completed"
+                            },
+                            {
+                                "code": "NonRenewed",
+                                "name": "Non-renewed"
+                            },
+                            {
+                                "code": "NotTaken",
+                                "name": "Not-taken"
+                            },
+                            {
+                                "code": "NotTaking",
+                                "name": "Not-taking"
+                            },
+                            {
+                                "code": "Reinstating",
+                                "name": "Reinstating"
+                            },
+                            {
+                                "code": "Renewing",
+                                "name": "Renewing"
+                            },
+                            {
+                                "code": "Rescinded",
+                                "name": "Rescinded"
+                            },
+                            {
+                                "code": "Rescinding",
+                                "name": "Rescinding"
+                            },
+                            {
+                                "code": "Waived",
+                                "name": "Waived"
+                            },
+                            {
+                                "code": "LegacyConversion",
+                                "name": "LegacyConversion"
+                            },
+                            {
+                                "code": "QuoteRequested",
+                                "name": "Quote Requested"
+                            },
+                            {
+                                "code": "RateRequested",
+                                "name": "Rate Requested"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "jobType": {
+                        "readOnly": true,
+                        "x-gw-typelist": "Job",
+                        "enum": [
+                            {
+                                "code": "Audit",
+                                "name": "Audit"
+                            },
+                            {
+                                "code": "Cancellation",
+                                "name": "Cancellation"
+                            },
+                            {
+                                "code": "Issuance",
+                                "name": "Issuance"
+                            },
+                            {
+                                "code": "Job",
+                                "name": "Job"
+                            },
+                            {
+                                "code": "PolicyChange",
+                                "name": "Policy Change"
+                            },
+                            {
+                                "code": "Reinstatement",
+                                "name": "Reinstatement"
+                            },
+                            {
+                                "code": "Renewal",
+                                "name": "Renewal"
+                            },
+                            {
+                                "code": "Rewrite",
+                                "name": "Rewrite"
+                            },
+                            {
+                                "code": "RewriteNewAccount",
+                                "name": "Rewrite New Account"
+                            },
+                            {
+                                "code": "Submission",
+                                "name": "Submission"
+                            },
+                            {
+                                "code": "TestJob",
+                                "name": "TestJob"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "nonRenewalCode": {
+                        "x-gw-typelist": "NonRenewalCode",
+                        "enum": [
+                            {
+                                "code": "insuredrequest",
+                                "name": "Non-Renew - Insured Request"
+                            },
+                            {
+                                "code": "loss",
+                                "name": "Non-Renew - losses"
+                            },
+                            {
+                                "code": "change",
+                                "name": "Non-Renew - material change"
+                            },
+                            {
+                                "code": "noncompliance",
+                                "name": "Non-Renew - non-compliance"
+                            },
+                            {
+                                "code": "outofbusness",
+                                "name": "Non-Renew - out of business"
+                            },
+                            {
+                                "code": "payhistory",
+                                "name": "Non-Renew - payment history"
+                            },
+                            {
+                                "code": "producertermination",
+                                "name": "Non-Renew - producer termination"
+                            },
+                            {
+                                "code": "reinsurance",
+                                "name": "Non-Renew - Reinsurance"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "organization": {
+                        "readOnly": true,
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "maxLength": 40,
+                                "minLength": 1,
+                                "pattern": "\\S"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "refid": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "x-gw-ui-ignoreProperties": true
+                    },
+                    "periodEnd": {
+                        "format": "date-time",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "periodStart": {
+                        "format": "date-time",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "policy": {
+                        "readOnly": true,
+                        "x-gw-referenceType": "Policy",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "maxLength": 40,
+                                "minLength": 1,
+                                "pattern": "\\S"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "refid": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "x-gw-ui-ignoreProperties": true
+                    },
+                    "policyNumber": {
+                        "maxLength": 40,
+                        "minLength": 1,
+                        "pattern": "\\S",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "primaryInsured": {
+                        "readOnly": true,
+                        "x-gw-referenceType": "PolicyContact",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "maxLength": 40,
+                                "minLength": 1,
+                                "pattern": "\\S"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "refid": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "x-gw-ui-ignoreProperties": true
+                    },
+                    "producerCode": {
+                        "readOnly": true,
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "maxLength": 40,
+                                "minLength": 1,
+                                "pattern": "\\S"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "refid": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "x-gw-ui-ignoreProperties": true
+                    },
+                    "product": {
+                        "readOnly": true,
+                        "properties": {
+                            "displayName": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "minLength": 1,
+                                "type": "string",
+                                "maxLength": 64,
+                                "pattern": "\\S"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "quoteType": {
+                        "readOnly": true,
+                        "x-gw-typelist": "QuoteType",
+                        "enum": [
+                            {
+                                "code": "Full",
+                                "name": "Full Application"
+                            },
+                            {
+                                "code": "Quick",
+                                "name": "Quick Quote"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "reinstateCode": {
+                        "x-gw-typelist": "ReinstateCode",
+                        "enum": [
+                            {
+                                "code": "other",
+                                "name": "Other"
+                            },
+                            {
+                                "code": "payment",
+                                "name": "Payment received"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "rejectReason": {
+                        "readOnly": true,
+                        "x-gw-typelist": "ReasonCode",
+                        "enum": [
+                            {
+                                "code": "cancel",
+                                "name": "Cancellation of underlying insurance"
+                            },
+                            {
+                                "code": "condemn",
+                                "name": "Condemned/unsafe"
+                            },
+                            {
+                                "code": "criminal",
+                                "name": "Criminal conduct by the insured"
+                            },
+                            {
+                                "code": "ProdRequirements",
+                                "name": "Does not meet program/product requirements"
+                            },
+                            {
+                                "code": "failsafe",
+                                "name": "Failure to comply with safety recommendations"
+                            },
+                            {
+                                "code": "failterm",
+                                "name": "Failure to comply with terms and conditions"
+                            },
+                            {
+                                "code": "failcoop",
+                                "name": "Failure to cooperate"
+                            },
+                            {
+                                "code": "fraud",
+                                "name": "Fraud"
+                            },
+                            {
+                                "code": "fincononpay",
+                                "name": "Insured's request - (finance co. nonpay)"
+                            },
+                            {
+                                "code": "noc",
+                                "name": "Insured's request - N.O.C"
+                            },
+                            {
+                                "code": "LossHistory",
+                                "name": "Loss history"
+                            },
+                            {
+                                "code": "reinsurance",
+                                "name": "Loss of reinsurance"
+                            },
+                            {
+                                "code": "noemployee",
+                                "name": "No employees/operations"
+                            },
+                            {
+                                "code": "eligibility",
+                                "name": "No longer eligible for group or program"
+                            },
+                            {
+                                "code": "nondisclose",
+                                "name": "Non disclosure of losses or underwriting information"
+                            },
+                            {
+                                "code": "nonpayment",
+                                "name": "Non-payment"
+                            },
+                            {
+                                "code": "nonreport",
+                                "name": "Non-report of payroll or failure to cooperate"
+                            },
+                            {
+                                "code": "OpsChars",
+                                "name": "Operations characteristics"
+                            },
+                            {
+                                "code": "sold",
+                                "name": "Out of business/sold"
+                            },
+                            {
+                                "code": "wrapup",
+                                "name": "Participation in wrap-up complete"
+                            },
+                            {
+                                "code": "PaymentHistory",
+                                "name": "Payment history"
+                            },
+                            {
+                                "code": "nottaken",
+                                "name": "Policy not-taken"
+                            },
+                            {
+                                "code": "midtermrewrite",
+                                "name": "Policy rewritten (mid-term)"
+                            },
+                            {
+                                "code": "flatrewrite",
+                                "name": "Policy rewritten or replaced (flat cancel)"
+                            },
+                            {
+                                "code": "ProductsChars",
+                                "name": "Products characteristics"
+                            },
+                            {
+                                "code": "CovsNotAvailable",
+                                "name": "Requested coverages/limits not available"
+                            },
+                            {
+                                "code": "InfoNotProvided",
+                                "name": "Required information not provided"
+                            },
+                            {
+                                "code": "riskchange",
+                                "name": "Substantial change in risk or increase in hazard"
+                            },
+                            {
+                                "code": "suspension",
+                                "name": "Suspension or revocation of license or permits"
+                            },
+                            {
+                                "code": "uwreasons",
+                                "name": "Underwriting reasons"
+                            },
+                            {
+                                "code": "unresolvedcontingency",
+                                "name": "Unresolved Contingency"
+                            },
+                            {
+                                "code": "vacant",
+                                "name": "Vacant; below occupancy limit"
+                            },
+                            {
+                                "code": "violation",
+                                "name": "Violation of health, safety, fire, or codes"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "rejectReasonText": {
+                        "maxLength": 65000,
+                        "minLength": 1,
+                        "pattern": "\\S",
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "renewalCode": {
+                        "x-gw-typelist": "RenewalCode",
+                        "enum": [
+                            {
+                                "code": "accountfavor",
+                                "name": "Renew - account consideration"
+                            },
+                            {
+                                "code": "assignedrisk",
+                                "name": "Renew - assigned risk"
+                            },
+                            {
+                                "code": "goodrisk",
+                                "name": "Renew - good risk"
+                            },
+                            {
+                                "code": "requiredbylaw",
+                                "name": "Renew - legal requirement"
+                            },
+                            {
+                                "code": "producerfavor",
+                                "name": "Renew - producer consideration"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "rewriteType": {
+                        "x-gw-typelist": "RewriteType",
+                        "enum": [
+                            {
+                                "code": "RewriteFullTerm",
+                                "name": "Rewrite Full Term"
+                            },
+                            {
+                                "code": "RewriteNewTerm",
+                                "name": "Rewrite New Term"
+                            },
+                            {
+                                "code": "RewriteRemainderOfTerm",
+                                "name": "Rewrite Remainder of Term"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "taxesAndSurcharges": {
+                        "$ref": "#/components/schemas/MonetaryAmount",
+                        "readOnly": true
+                    },
+                    "termType": {
+                        "x-gw-typelist": "TermType",
+                        "enum": [
+                            {
+                                "code": "Annual",
+                                "name": "Annual"
+                            },
+                            {
+                                "code": "HalfYear",
+                                "name": "6 months"
+                            },
+                            {
+                                "code": "Other",
+                                "name": "Other"
+                            }
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "This property is ignored on updates.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object",
+                        "x-gw-jl-ignoreProperties": true
+                    },
+                    "totalCost": {
+                        "$ref": "#/components/schemas/MonetaryAmount",
+                        "readOnly": true
+                    },
+                    "totalPremium": {
+                        "$ref": "#/components/schemas/MonetaryAmount",
+                        "readOnly": true
+                    }
+                },
+                "type": "object",
+                "x-gw-api-info": {
+                    "operations": [
+                        "get-collection",
+                        "get-element",
+                        "patch-element"
+                    ],
+                    "collectionPath": "/jobs",
+                    "elementPath": "/jobs/{id}"
+                }
+            }
+        }
+    }
+}

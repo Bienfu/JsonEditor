@@ -10,11 +10,13 @@ import SortableTreeComponent from "./SortableTreeComponent";
 import JsonUpload from "./JsonUpload";
 import { downloadFile } from "./fileDownload";
 import { DataTypes } from "./DataTypes";
+import swaggerData from "./swagger data.json";
+import swaggerSchema from "./swagger schema.json";
 import _ from "lodash";
 
 function App() {
   const [selected, setSelected] = useState(null);
-  const [json, setJson] = useState(sampleData);
+  const [json, setJson] = useState(swaggerData);
   const [selectedType, setType] = useState(null);
   const [revertTree, setRevertTree] = useState({});
   const [timestamp, setTimestamp] = useState(0);
@@ -179,14 +181,16 @@ function App() {
         onChange={(e) => selectedFile(e.target.files[0])}
       />
       <button onClick={download}>Download</button>
-      {selectedType && selectedType.canChange && (
-        <button onClick={addNew}>Add {selectedType.typeName}</button>
+      {(
+        <button onClick={addNew} disabled={selectedType?!selectedType.canChange:true}>Add</button>
+
+        
       )}
-      {selectedType && selectedType.canChange && (
-        <button onClick={duplicateCurrent}>Duplicate</button>
+      {(
+        <button onClick={duplicateCurrent} disabled={selectedType?!selectedType.canChange:true}>Duplicate</button>
       )}
-      {selectedType && selectedType.canChange && (
-        <button onClick={remove}>Remove</button>
+      {(
+        <button onClick={remove }disabled={selectedType?!selectedType.canChange:true}>Remove</button>
       )}
       {revertTree[selected] && (
           <button className="button" onClick={revertJson}>

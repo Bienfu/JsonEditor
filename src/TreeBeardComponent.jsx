@@ -6,45 +6,17 @@ import { useEffect } from "react";
 
 const TreeExample = (props) => {
   const { json, schema, selected, revertTree, toggleTree, setToggle } = props;
-  const fullJson = { ...json };
-
-  //   const decorators = {
-  //     Loading: (props) => {
-  //         return (
-  //             <div style={props.style}>
-  //                 loading...
-  //             </div>
-  //         );
-  //     },
-  //     Toggle: (props) => {
-  //         return (
-  //             <div style={props.style}>
-  //                 <svg height={props.height} width={props.width}>
-  //                     // Vector Toggle Here
-  //                 </svg>
-  //             </div>
-  //         );
-  //     },
-  //     Header: (props) => {
-  //         return (
-  //             <div style={props.style}>
-  //                 {props.node.name}
-  //             </div>
-  //         );
-  //     },
-  //     Container: (props) => {
-  //         return (
-  //             <div onClick={this.props.onClick}>
-  //                 // Hide Toggle When Terminal Here
-  //                 <this.props.decorators.Toggle/>
-  //                 <this.props.decorators.Header/>
-  //             </div>
-  //         );
-  //     }
-  // };
+  let isSample = true;
+  let fullJson = { ...json };
+  if(fullJson.data){
+    // console.log("stuff")
+    // console.log(fullJson.data.attributes);
+    fullJson = fullJson.data.attributes;
+    isSample = false;
+  }
 
   // console.log(Object.entries(json.companies[0].departments[0].executive.emailAddress))
-  function mapChildren3(json, path) {
+  function mapChildren3(json, path, parentType) {
     // console.log("length", Object.entries(json));
     let array = Object.entries(json).map(([key, value]) => {
       // console.log(key);
@@ -57,10 +29,16 @@ const TreeExample = (props) => {
       // }
       let type;
       let icon;
+      let typeDefinition;
+      let jobDefinition;
       for (type of DataTypes) {
         if (type.typeCheckFields.every((path) => _.has(value, path))) {
           // console.log("Found");
           // console.log(type.typeName);
+          if(type.typeName === "Job"){
+            continue
+          }
+          typeDefinition = type;
           let displayString = type.display.map((x) => value[x]);
           if (type.typeName == "Person") {
 
@@ -114,23 +92,23 @@ const TreeExample = (props) => {
           // console.log("path ", path.substring(1))
           // const oldName = name;
           displayName = name.concat("*");
-          console.log("edited Name ", displayName);
+          // console.log("edited Name ", displayName);
         }
         let toggleState = true;
-        console.log("new path", newpath)
+        // console.log("new path", newpath)
         // console.log(toggleTree[newpath]);
         if(toggleTree && toggleTree[newpath]!= null){
-          console.log("Toggled!!!!")
+          // console.log("Toggled!!!!")
           toggleState = toggleTree[newpath];
         }
 
         return {
-          id: path + `.${name}`,
+          id: newpath,
           name: displayName,
           toggled: toggleState,
-          children: mapChildren3(value, newpath),
+          children: mapChildren3(value, newpath, typeDefinition),
         };
-      } else {
+      } else if (typeof value === "object"){
         // console.log("is not Array");
         // console.log(Object.entries(value))
         const newpath = path + `.${key}`;
@@ -153,12 +131,14 @@ const TreeExample = (props) => {
         if(toggleTree && toggleTree[checkPath]){
           toggleState = toggleTree[checkPath];
         }
+        // console.log("value")
+        // console.log(value)
         if (typeof value === "object")
           return {
             id: path + `[${key}]`,
             name: displayName,
             toggled: toggleState,
-            children: mapChildren3(value, newpath),
+            children: mapChildren3(value, newpath, typeDefinition),
             decorators: {
               Header: (props) => {
                 return (
@@ -170,10 +150,50 @@ const TreeExample = (props) => {
                 );
               },
             },
-          };
+          }
         else {
           return null;
         }
+      }
+      else if (parentType){
+
+        if (typeof value === "string" && parentType.include.includes(key))
+        {
+          // console.log(parentType.typeName)
+          // console.log("value ", value)
+          const newpath = path + `.${key}`;
+          return {
+            id: newpath,
+            name: `${key}: ${value}`,
+            toggled: true,
+          }
+        }
+        else
+        return null;
+      }
+      else if (typeof value === "string" && !isSample){
+        const jobDefinition = DataTypes[DataTypes.length-1];
+        if (!jobDefinition.includeDetail.includes(key)){
+
+          const newpath = path + `.${key}`;
+          if (DataTypes)
+          return {
+            id: newpath,
+            name: `${key}: ${value}`,
+            toggled: true,
+          }
+          else{
+            return null;
+          }
+        }
+      }
+      else if (typeof value === "string"){
+        const newpath = path + `.${key}`;
+          return {
+            id: newpath,
+            name: `${key}: ${value}`,
+            toggled: true,
+          }
       }
     });
     return array.filter(function (el) {
@@ -196,7 +216,18 @@ const TreeExample = (props) => {
   const [choose, setSelected] = useState(null);
 
   useMemo(() => {
-    const newData = mapChildren3(json, "");
+    const newData = mapChildren3(fullJson, "", null);
+    if(!isSample){
+      newData.unshift({
+        id: ".job",
+        name: `Job`,
+        toggled: true,
+      })
+    }
+    else{
+      newData.shift();
+    }
+
     setData(newData);
   }, [json, revertTree]);
   const onToggle = (node, toggled) => {
@@ -214,7 +245,14 @@ const TreeExample = (props) => {
     // console.log(node)
     setCursor(node);
     // console.log("path", node.id);
-    selected(node.id.substring(1));
+    if(isSample){
+
+      selected(node.id.substring(1));
+    }
+    else{
+      // console.log(node.id)
+      selected("data.attributes".concat(node.id));
+    }
     let chosen = _.get(json, node.id.substring(1), "default");
     // console.log(chosen);
     if (chosen && chosen.name) {

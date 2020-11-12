@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from "react";
+import swaggerSchema from "./swagger schema.json";
+import schemaData from "./JSONSchema.json";
 export const DataTypes = [
   {
     typeName: "Person",
@@ -8,55 +10,10 @@ export const DataTypes = [
     // display: (key, firstName, lastName) => `${key}: ${firstName} ${lastName} `,
     display: ["firstName", "lastName"],
     display2: (firstName, lastName) => `${firstName} ${lastName} `,
-    include: ["firstName", "lastName"],
-    isEditable: ["firstName", "lastName"],
-    details: (chosen, handleSubmit, onChange, schemaProps) => (
-      <div className="DetailDisplay">
-        <div className="DetailDisplayContainer">
-          {/* <div>User ID: {chosen.userId}</div> */}
-          <form onSubmit={handleSubmit}>
-            {/* <div className="formFirstName">
-              <label for="fname">First name:</label>
-              <input
-                type="text"
-                id="fname"
-                name="firstName"
-                value={chosen.firstName}
-                onChange={onChange}
-              />
-            </div>
-            <div className="formLastName">
-              <label for="lname">Last name:</label>
-              <input
-                type="text"
-                id="lname"
-                name="lastName"
-                value={chosen.lastName}
-                onChange={onChange}
-              />
-            </div> */}
-            {Object.entries(schemaProps).map(([key, value]) => {
-              return(
-
-                <div key={key} className={"form"+key}>
-                <label for={key}>{value.title}:</label>
-                <input
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={chosen[key]}
-                  onChange={onChange}
-                  />
-              </div>
-                  )
-            })}
-            <button className="Button" type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    ),
+    include: [],
+    includeDetail: ["firstName", "lastName"],
+    isEditable: ["lastName"],
+    schemaFile: schemaData,
     blank: {
       firstName: "firstName",
       lastName: "lastName",
@@ -73,74 +30,10 @@ export const DataTypes = [
     // display: (street, city, state, zipcode) =>
     //   `${street}, ${city}, ${state} ${zipcode}`,
     display: ["street", "city", "state", "zipcode"],
+    include: [],
+    includeDetail: ["state", "zipcode"],
     isEditable: ["street", "city", "state", "zipcode"],
-    details: (chosen, handleSubmit, onChange, schemaProps) => (
-      <div className="DetailDisplay">
-        <div className="DetailDisplayContainer">
-          {/* <div>User ID: {chosen.userId}</div> */}
-          <form onSubmit={handleSubmit}>
-            {/* <div className="formStreet">
-              <label for="street">Street:</label>
-              <input
-                type="text"
-                id="street"
-                name="street"
-                value={chosen.street}
-                onChange={onChange}
-              />
-            </div>
-            <div className="formCity">
-              <label for="city">City:</label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={chosen.city}
-                onChange={onChange}
-              />
-            </div>
-            <div className="formState">
-              <label for="state">State:</label>
-              <input
-                type="text"
-                id="state"
-                name="state"
-                value={chosen.state}
-                onChange={onChange}
-              />
-            </div>
-            <div className="formZipcode">
-              <label for="zipcode">ZipCode:</label>
-              <input
-                type="text"
-                id="zipcode"
-                name="zipcode"
-                value={chosen.zipcode}
-              />
-            </div>
-             */}
-             {Object.entries(schemaProps).map(([key, value]) => {
-              return(
-
-                <div key={key} className={"form"+key}>
-                <label for={key}>{value.title}:</label>
-                <input
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={chosen[key]}
-                  onChange={onChange}
-                  />
-              </div>
-                  )
-            })}
-            <button className="Button" type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    ),
+    schemaFile: schemaData,
     blank: {
       street: "street",
       city: "city",
@@ -156,48 +49,10 @@ export const DataTypes = [
     icon: "fas fa-building",
     // display: (name) => `${name}`,
     display: ["name"],
+    include: [],
+    includeDetail: ["name"],
     isEditable: ["name"],
-    details: (chosen, handleSubmit, onChange, schemaProps) => (
-      <div className="DetailDisplay">
-        <div className="DetailDisplayContainer">
-          {/* <div>User ID: {chosen.userId}</div> */}
-          <form onSubmit={handleSubmit}>
-            {/* <div className="formName">
-              <label for="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={chosen.name}
-                onChange={onChange}
-              />
-            </div> */}
-            {Object.entries(schemaProps).map(([key, value]) => {
-              if(value.type == "string"){
-
-                return(
-                  <div key={key} className={"form"+key}>
-                <label for={key}>{value.title}:</label>
-                <input
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={chosen[key]}
-                  onChange={onChange}
-                  />
-              </div>
-                  )
-                }
-            })}
-            {/* <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
-            <button className="Button" type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    ),
+    schemaFile: schemaData,
     blankDepartment: {
       name: "DepartmentName",
       budget: "$???",
@@ -236,48 +91,10 @@ export const DataTypes = [
     icon: "fas fa-building",
     // display: (name) => `${name}`,
     display: ["name"],
+    include: [],
+    includeDetail: ["name"],
     isEditable: ["name"],
-    details: (chosen, handleSubmit, onChange, schemaProps) => (
-      <div className="DetailDisplay">
-        <div className="DetailDisplayContainer">
-          {/* <div>User ID: {chosen.userId}</div> */}
-          <form onSubmit={handleSubmit}>
-            {/* <div className="formName">
-              <label for="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={chosen.name}
-                onChange={onChange}
-              />
-            </div> */}
-            {Object.entries(schemaProps).map(([key, value]) => {
-              if(value.type == "string"){
-
-                return(
-                  <div key={key} className={"form"+key}>
-                <label for={key}>{value.title}:</label>
-                <input
-                  type="text"
-                  id={key}
-                  name={key}
-                  value={chosen[key]}
-                  onChange={onChange}
-                  />
-              </div>
-                  )
-                }
-            })}
-            {/* <label for="lname">Last name:</label>
-            <input type="text" id="lname" name="lname" value={chosen.lastName} /> */}
-            <button className="Button" type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    ),
+    schemaFile: schemaData,
     blankCompany: {
       name: "Company Name",
       address: {
@@ -319,5 +136,55 @@ export const DataTypes = [
       ],
     },
     canChange: true,
+  },
+  {
+    typeName: "Account",
+    schema: "#/components/schemas/Job/properties/account",
+    typeCheckFields: ["displayName", "id", "type", "uri"],
+    icon: "fas fa-user",
+    display: ["displayName"],
+    include: [],
+    includeDetail: ["id", "displayName", "type", "uri"],
+    isEditable: ["displayName"],
+    schemaFile: swaggerSchema,
+    blank: {
+      displayName: "tempName",
+      id: "AA:XXX",
+      type: "Account",
+      uri: "/account/v1/accounts/XXXX",
+    },
+    canChange: false,
+  },
+  {
+    typeName: "BaseState",
+    schema: "#/components/schemas/Job/properties",
+    typeCheckFields: ["code", "name"],
+    icon: "fas fa-user",
+    display: ["name"],
+    include: [],
+    includeDetail: ["name"],
+    isEditable: ["name"],
+    schemaFile: swaggerSchema,
+    blank: {
+      code: "AA",
+      name: "StateName"
+    },
+    canChange: false,
+  },
+  {
+    typeName: "Job",
+    schema: "#/components/schemas/Job/properties",
+    typeCheckFields: [],
+    icon: "fas fa-user",
+    display: ["id"],
+    include: [],
+    includeDetail: ["id", "createdDate"],
+    isEditable: ["id"],
+    schemaFile: swaggerSchema,
+    blank: {
+      code: "AA",
+      name: "StateName"
+    },
+    canChange: false,
   },
 ];

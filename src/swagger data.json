@@ -1,0 +1,115 @@
+{
+	"data": {
+		"attributes": {
+			"account": {
+				"displayName": "5222798463",
+				"id": "pc:501",
+				"type": "Account",
+				"uri": "/account/v1/accounts/pc:501"
+			},
+			"baseState": {
+				"code": "CA",
+				"name": "California"
+			},
+			"createdDate": "2020-11-03T02:46:47.336Z",
+			"id": "pc:875",
+			"jobEffectiveDate": "2020-10-26T07:01:00.000Z",
+			"jobNumber": "0007456202",
+			"jobStatus": {
+				"code": "Draft",
+				"name": "Draft"
+			},
+			"jobType": {
+				"code": "Submission",
+				"name": "Submission"
+			},
+			"organization": {
+				"displayName": "Armstrong and Company",
+				"id": "pc:1"
+			},
+			"periodEnd": "2021-04-26T07:01:00.000Z",
+			"periodStart": "2020-10-26T07:01:00.000Z",
+			"primaryInsured": {
+				"displayName": "RestApi Personal",
+				"id": "pc:1103",
+				"type": "PolicyContact",
+				"uri": "/job/v1/jobs/pc:875/contacts/pc:1103"
+			},
+			"producerCode": {
+				"displayName": "100-002541",
+				"id": "pc:6"
+			},
+			"product": {
+				"displayName": "Personal Auto",
+				"id": "PersonalAuto"
+			},
+			"quoteType": {
+				"code": "Full",
+				"name": "Full Application"
+			},
+			"termType": {
+				"code": "HalfYear",
+				"name": "6 months"
+			}
+		},
+		"checksum": "0",
+		"links": {
+			"change-version": {
+				"href": "/job/v1/jobs/pc:875/change-version",
+				"methods": ["post"]
+			},
+			"contacts": {
+				"href": "/job/v1/jobs/pc:875/contacts",
+				"methods": ["get", "post"]
+			},
+			"costs": {
+				"href": "/job/v1/jobs/pc:875/costs",
+				"methods": ["get"]
+			},
+			"decline": {
+				"href": "/job/v1/jobs/pc:875/decline",
+				"methods": ["post"]
+			},
+			"lines": {
+				"href": "/job/v1/jobs/pc:875/lines",
+				"methods": ["get"]
+			},
+			"locations": {
+				"href": "/job/v1/jobs/pc:875/locations",
+				"methods": ["get", "post"]
+			},
+			"not-take": {
+				"href": "/job/v1/jobs/pc:875/not-take",
+				"methods": ["post"]
+			},
+			"payment-plans": {
+				"href": "/job/v1/jobs/pc:875/payment-plans",
+				"methods": ["get"]
+			},
+			"questions": {
+				"href": "/job/v1/jobs/pc:875/questions",
+				"methods": ["get", "patch"]
+			},
+			"quote": {
+				"href": "/job/v1/jobs/pc:875/quote",
+				"methods": ["post"]
+			},
+			"self": {
+				"href": "/job/v1/jobs/pc:875",
+				"methods": ["get", "patch"]
+			},
+			"user-roles": {
+				"href": "/job/v1/jobs/pc:875/user-roles",
+				"methods": ["get", "patch"]
+			},
+			"versions": {
+				"href": "/job/v1/jobs/pc:875/versions",
+				"methods": ["get", "post"]
+			},
+			"withdraw": {
+				"href": "/job/v1/jobs/pc:875/withdraw",
+				"methods": ["post"]
+			}
+		}
+	}
+}
