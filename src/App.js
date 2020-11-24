@@ -17,10 +17,12 @@ import _ from "lodash";
 function App() {
   const [selected, setSelected] = useState(null);
   const [json, setJson] = useState(sampleData);
-  const [selectedType, setType] = useState(null);
+  const [selectedType, setType] = useState(false);
   const [revertTree, setRevertTree] = useState({});
   const [timestamp, setTimestamp] = useState(0);
   const [toggleTree, setToggleTree] = useState({});
+  const [clipboard, setClipboard] = useState(null);
+  const hiddenFileInput = React.useRef(null);
   // const [schema, setSchema] = useState(schemaData);
 
   function selectedFile(newFile) {
@@ -37,6 +39,10 @@ function App() {
       }
     };
     reader.readAsText(newFile);
+  }
+
+  function handleUpload(){
+    hiddenFileInput.current.click();
   }
 
   function download() {
@@ -146,6 +152,113 @@ function App() {
     }
   }
 
+  function cut(){
+    console.log("in cut")
+    if (selected) {
+      const jsonCopy = { ...json };
+      const original = _.get(jsonCopy, selected, "default");
+      // const str = selected.substring(0, selected.indexOf("["));
+      // console.log(str);
+      // const base = _.get(jsonCopy, str, "default");
+      // const copy = _.clone(original);
+      // const str = selected.substring(0, selected.indexOf("["));
+      // // console.log(str);
+      // const base = _.get(jsonCopy, str, "default");
+      // if (Array.isArray(base)) {
+      //   base.push(copy);
+      //   setJson(jsonCopy);
+      //   const newPath = str + `[${base.length - 1}]`;
+      //   console.log("new path ", newPath);
+      //   setSelected(newPath);
+      // }
+      // original.id = base.length+1;
+      console.log(original)
+      const newClipboard = {
+        element: original,
+        elementType: selectedType,
+        actionType: "cut"
+      }
+      setClipboard(newClipboard);
+      remove();
+    }
+
+  }
+
+  function copy() {
+    console.log("in copy")
+    if (selected) {
+      const jsonCopy = { ...json };
+      const original = _.get(jsonCopy, selected, "default");
+      // const str = selected.substring(0, selected.indexOf("["));
+      // console.log(str);
+      // const base = _.get(jsonCopy, str, "default");
+      // const copy = _.clone(original);
+      // const str = selected.substring(0, selected.indexOf("["));
+      // // console.log(str);
+      // const base = _.get(jsonCopy, str, "default");
+      // if (Array.isArray(base)) {
+      //   base.push(copy);
+      //   setJson(jsonCopy);
+      //   const newPath = str + `[${base.length - 1}]`;
+      //   console.log("new path ", newPath);
+      //   setSelected(newPath);
+      // }
+      // original.id = base.length+1;
+      console.log(original)
+      const newClipboard = {
+        element: original,
+        elementType: selectedType,
+        actionType: "copy"
+      }
+      setClipboard(newClipboard);
+    }
+  }
+
+  function paste() {
+    if (selected && clipboard) {
+      console.log("in Paste")
+      const target = selected;
+      const jsonCopy = { ...json };
+      // console.log(target);
+      const str = target.substring(0, target.indexOf("["));
+      // console.log(str);
+      const base = _.get(jsonCopy, str, "default");
+      let newElement = clipboard.element;
+      if(newElement.userId){
+        newElement.userId = base[base.length-1].userId+1;
+
+      }
+      else if (newElement.employeeId){
+        // base[base.length].employeeId
+        newElement.employeeId = base[base.length-1].employeeId+1;
+      }
+
+      // console.log(base);
+      if (selectedType == clipboard.elementType) {  
+        console.log("Match type")
+        base.push(newElement)
+        const newPath = str + `[${base.length - 1}]`;
+        console.log("new path ", newPath);
+        setSelected(newPath);
+        setJson(jsonCopy);
+      }
+
+      if(clipboard.actionType == "cut"){
+        setClipboard(null);
+      }
+      // const chosen = _.get(jsonCopy, selected, "default");
+      // if (chosen) {
+      //   for (let type of DataTypes) {
+      //     if (type.typeCheckFields.every((path) => _.has(chosen, path))) {
+      //       console.log("Found");
+      //       console.log(type.typeName);
+      // }
+      // console.log("not found");
+      // }
+      // }
+    }
+  }
+
   function handleKeyPress(evt) {
     evt.preventDefault();
     evt.stopPropagation();
@@ -175,21 +288,23 @@ function App() {
         <button className="uploadButton">Upload</button>
       </label> */}
       <input
-        id="file-upload"
+        id="fileInput"
         type="file"
-        name="file-upload"
+        name="fileInput"
+        ref={hiddenFileInput}
         onChange={(e) => selectedFile(e.target.files[0])}
       />
 
       {/* <input
-        type="file-upload"
-        name="file-upload"
+        type="fileInput"
+        name="fileInput"
         onChange={(e) => selectedFile(e.target.files[0])}
         className="inputfile"
       /> */}
-      <label for="file-upload">
+      {/* <label for="fileInput">
         <div className="ButtonInput">Select file to upload</div>
-      </label>
+      </label> */}
+      <button onClick={handleUpload}>Upload</button>
       <button onClick={download}>Download</button>
       {
         <button
@@ -199,6 +314,14 @@ function App() {
           Add
         </button>
       }
+        {
+          <button
+            onClick={remove}
+            disabled={selectedType ? !selectedType.canChange : true}
+          >
+            Remove
+          </button>
+        }
       {
         <button
           onClick={duplicateCurrent}
@@ -209,10 +332,26 @@ function App() {
       }
       {
         <button
-          onClick={remove}
+          onClick={copy}
           disabled={selectedType ? !selectedType.canChange : true}
         >
-          Remove
+          Copy
+        </button>
+      }
+      {
+        <button
+          onClick={cut}
+          disabled={selectedType ? !selectedType.canChange : true}
+        >
+          Cut
+        </button>
+      }
+      {
+        <button
+          onClick={paste}
+          disabled={clipboard ? false : true}
+        >
+          Paste
         </button>
       }
       {revertTree[selected] && (

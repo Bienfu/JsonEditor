@@ -265,7 +265,7 @@ function DetailDisplay(props) {
       </div>
     );
   }
-  setType(null);
+  // setType(null);
   if (copy && !Array.isArray(copy)) {
     const array = selected.split(".");
     // console.log(array[array.length - 1]);
